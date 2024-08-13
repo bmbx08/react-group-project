@@ -7,6 +7,7 @@ import ItemsPage from "./pages/Items/ItemsPage";
 import ItemDetailPage from "./pages/ItemDetail/ItemDetailPage";
 import LoginPage from "./pages/Login/LoginPage";
 import SignupPage from "./pages/Login/SignupPage";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
