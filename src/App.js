@@ -1,4 +1,4 @@
-import {Routes} from "react-router-dom";
+import {Route, Routes} from "react-router-dom";
 import "./App.css";
 import AppLayout from "./layout/AppLayout";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
@@ -20,7 +20,7 @@ function App() {
           </Route>
           <Route path="login">  {/* 추후 Private Path로 바꿔야함 */}
             <Route index element={<LoginPage/>}/>
-            <Route path="/signup" element={<SignupPage/>}/>
+            <Route path="signup" element={<SignupPage/>}/>
           </Route>
         </Route>
 
