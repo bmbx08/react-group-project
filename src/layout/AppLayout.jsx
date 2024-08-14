@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom'
 
 const AppLayout = () => {
   return (
-    <div style={{color:'white'}}>
+    <div>
       navbar here
       <Outlet/>
     </div>
