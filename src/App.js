@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import {Route, Routes} from "react-router-dom";
 import "./App.css";
 import AppLayout from "./layout/AppLayout";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
@@ -11,7 +11,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
-    <div style={{ backgroundColor: '#181733' }}>
+    <div>
       <Routes>
         <Route path="/" element={<AppLayout />}>
           <Route index element={<Homepage />} />
@@ -20,12 +20,12 @@ function App() {
             <Route path=":id" element={<ItemDetailPage />} />
           </Route>
           <Route path="login">  {/* 추후 Private Path로 바꿔야함 */}
-            <Route index element={<LoginPage />} />
-            <Route path="signup" element={<SignupPage />} />
+            <Route index element={<LoginPage/>}/>
+            <Route path="signup" element={<SignupPage/>}/>
           </Route>
         </Route>
 
-        <Route path="*" element={<NotFoundPage />} />
+        <Route path="*" element={<NotFoundPage/>}/>
       </Routes>
     </div>
   );
