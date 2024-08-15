@@ -1,0 +1,69 @@
+.product-options {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.size-options, .color-options {
+  display: flex;
+  flex-direction: column;
+}
+
+.size-buttons, .color-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.size-button {
+  border: 1px solid black;
+  padding: 10px 20px;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.3s;
+}
+
+.size-button:hover {
+  background-color: lightgray;
+}
+
+.size-button.selected {
+  background-color: gray;
+  color: white;
+}
+
+.color-circle {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: border-color 0.3s;
+}
+
+.color-circle:hover {
+  border-color: lightgray;
+}
+
+.color-circle.selected {
+  border-color: black;
+}
+
+
+
+.button-group button {
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  margin: 3px;
+  margin-top: 10px;
+  
+}
+
+.add-to-cart {
+  background-color: black;
+  color: white;
+}
+
+.buy-now:hover, .wish-list:hover {
+  border: 2px solid black;
+}
