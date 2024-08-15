@@ -6,7 +6,7 @@ const client_id="nXw4Ep53fsD6UQjNvZ6U";
 const client_secret="AYSOUsJiZJ";
 
 const api = axios.create({
-  baseURL: "https://openapi.naver.com/v1/search",
+  baseURL: "/v1/search",
   headers: {
     'X-Naver-Client-Id': client_id,
     'X-Naver-Client-Secret': client_secret
