@@ -1,0 +1,151 @@
+.text_title{
+  font-weight: bold;
+}
+
+.text_price{
+  font-weight: bold;
+  margin-top: 5px;
+  font-size: 11px;
+}
+
+.text_category{
+  font-size: 20px;
+  display: flex;
+  justify-content: space-around
+}
+
+.product-options {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.product-detail-img{
+  width: 500px;
+}
+.size-options, .color-options {
+  display: flex;
+  flex-direction: column;
+}
+
+.size-buttons, .color-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.size-button {
+  border: 1px solid black;
+  padding: 10px 20px;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.3s;
+}
+
+.size-button:hover {
+  background-color: lightgray;
+}
+
+.size-button.selected {
+  background-color: gray;
+  color: white;
+}
+
+.color-circle {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: border-color 0.3s;
+}
+
+.color-circle:hover {
+  border-color: lightgray;
+}
+
+.color-circle.selected {
+  border-color: black;
+}
+
+
+
+.button-group button {
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  margin: 3px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.add-to-cart {
+  background-color: black;
+  color: white;
+}
+
+.buy-now:hover, .wish-list:hover {
+  border: 2px solid black;
+}
+
+.image-container {
+  position: relative;
+}
+
+.scanner-box {
+  position: absolute;
+  border: 2px solid #333;
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+  z-index: 10;
+}
+
+.view-box {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  border: 1px solid #ddd;
+  right: -610px;
+  top: 0;
+  background-repeat: no-repeat;
+  z-index: 11;
+}
+
+/*  */
+
+/* Container for the tabs */
+.tab-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  /* background-color: #f9f9f9;  */
+}
+
+/* Individual tab styling */
+.tab {
+  flex: 1;
+  padding: 15px;
+  text-align: center;
+  cursor: pointer;
+  border-bottom: 2px solid gray;
+  color: gray;
+  
+}
+
+/* Hover effect for tabs */
+.tab:hover {
+  color: black;
+  border-bottom: 3px solid black;
+}
+
+/* Active tab styling */
+.tab.active {
+  color: black;
+  border-bottom: 3px solid black;
+}
+
+/* Section styling */
+.section {
+  padding: 50px;
+  min-height: 100vh; /* Ensures each section takes at least one viewport height */
+  border-bottom: 1px solid #ddd; /* Optional: Border between sections */
+}
