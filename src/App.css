@@ -1,0 +1,126 @@
+.nav-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    margin: 1em;
+}
+
+@font-face{
+    font-family: 'logo-font';
+    src: url("font/RubikDoodleShadow-Regular.ttf");
+}
+
+.logo-area {
+    flex-grow: 1;
+    text-align: center;
+    font-family: 'logo-font';
+    font-size: 2.5em;
+    margin-right: -20px;
+    cursor: pointer;
+    margin-top: 0.05em;
+}
+
+.nav-right,
+.nav-left {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 1em;
+}
+
+.login-button,
+.shoppingCart-button,
+.create-button {
+    display: flex;
+    justify-content: flex-end;
+    margin: 7px;
+    cursor: pointer;
+}
+
+.item-button,
+.shopinfo-button,
+.notice-button,
+.qna-button,
+.review-button {
+    display: flex;
+    justify-content: flex-start;
+    margin: 7px;
+    cursor: pointer;
+}
+
+.login-text,
+.shoppingCart-text,
+.create-text,
+.item-text,
+.shopinfo-text,
+.notice-text,
+.qna-text,
+.review-text {
+    margin-left: 5px;
+    font-size: 0.8em;
+}
+
+.login-text:hover,
+.shoppingCart-text:hover,
+.create-text:hover,
+.item-text:hover,
+.shopinfo-text:hover,
+.notice-text:hover,
+.qna-text:hover,
+.review-text:hover,
+.tc-text:hover,
+.g-text:hover,
+.pp-text:hover {
+    color: gray;
+}
+
+.footer-1,
+.footer-3 {
+    text-align: center;
+}
+
+.footer-1 {
+    margin-top: 1em;
+}
+
+.footer-2 {
+    text-align: center;
+    padding: 2em;
+}
+
+.footer-4 {
+    margin-top: 2em;
+    padding: 1em;
+}
+.footer-4_1 {
+    display: flex;
+    justify-content: flex-start
+}
+.footer-4_2 {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.footer-logo {
+    font-family: 'logo-font';
+    font-size: 1.3em;
+}
+
+.tc-text,.g-text{
+    margin-right: 20px;
+}
+
+.git-icon{
+    margin-right: 12px;
+}
+
+.cr-text,.tc-text,.g-text,.pp-text {
+    font-size: 0.9em;
+    cursor: pointer;
+}
+
+.git-icon {
+    font-size: 1.2em;
+    cursor: pointer;
+}
