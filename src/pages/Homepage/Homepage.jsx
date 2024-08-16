@@ -1,17 +1,19 @@
-import {useQuery} from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import React from "react";
-import {useData} from "../../hooks/useData";
+import { useData } from "../../hooks/useData";
+import Banner from "./Banner/Banner";
+import ItemCard from "./ItemCard/ItemCard";
 
 const Homepage = () => {
-  const {data, isLoading, isError, error} = useData();
-  console.log("data", data, isLoading);
-  console.log("error", isError, error);
+  // const { data, isLoading, isError, error } = useData();
+  // console.log("data", data, isLoading);
+  // console.log("error", isError, error);
 
-  useQuery({});
+  // useQuery({});
 
   return (
     <div>
-      <div>Homepage</div>
+      {/* <div>Homepage</div>
       <div className="d-flex">
         {data?.items?.map((item,index) => (
           <div className="item-card" key={index}>
@@ -19,7 +21,9 @@ const Homepage = () => {
             <div>{item.title}</div>
           </div>
         ))}
-      </div>
+      </div> */}
+      <Banner />
+      <ItemCard />
     </div>
   );
 };
