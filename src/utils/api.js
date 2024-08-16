@@ -6,10 +6,6 @@ const client_id="nXw4Ep53fsD6UQjNvZ6U";
 const client_secret="AYSOUsJiZJ";
 
 const api = axios.create({
-  baseURL: "https://openapi.naver.com",
-  params: {
-    query: 'steadyeverywear', // 특정 쇼핑몰의 이름을 여기에 입력합니다.
-  },
   headers: {
     'Content-Type': 'application/json',
     Accept: 'application/json',

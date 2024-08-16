@@ -5,6 +5,7 @@ import api from "../utils/api";
 
 const fetchData = () => {
   const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
+  console.log(PROXY);
   const URL = `${PROXY}/v1/search/shop.json?q=steadyeverywear`;
     return api.get(URL);
   };
