@@ -1,12 +1,12 @@
 [[redirects]]
   from = "/proxy/*"
   to = "https://openapi.naver.com/:splat"
-  status = 200
+  status = 200!
   force = true
   headers = {X-From = "Netlify"}
 
 [[redirects]]
   from = "/*"
   to = "/index.html"
-  status = 200
+  status = 200!
 	force = false

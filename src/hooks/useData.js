@@ -7,6 +7,8 @@ const fetchData = () => {
   const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy';
   console.log(PROXY);
   const URL = `${PROXY}/v1/search/shop.json?q=steadyeverywear`;
+  console.log(URL);
+
     return api.get(URL);
   };
   
