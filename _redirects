@@ -1,0 +1,1 @@
+/proxy/*   https://openapi.naver.com/:splat    200
