@@ -1,0 +1,57 @@
+.sidebar{
+    position:sticky;
+    top:0;
+    height:100vh;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 5em;
+}
+
+.sidebar-title{
+    font-size: 1.3em;
+    margin-bottom: 0.4em;
+}
+
+.no-dot{
+    list-style-type: none;
+}
+
+.list-padding{
+    padding-left:1em;
+}
+
+.sidebar-item{
+    font-size: 1.05em;
+    padding: 0.15em;
+
+}
+
+.sidebar-subitem{
+    font-size: 0.8em;
+    color: gray;
+    padding: 0.15em;
+}
+
+.category-click:hover{
+    cursor: pointer;
+    opacity: 0.5;    
+}
+
+.toggle-section.true{
+    display: block;
+    opacity:1s;
+    transition: all 0.5s allow-discrete;
+}
+
+.toggle-section.false{
+    display: none;
+    opacity: 0;
+    transition: all 0.5s allow-discrete;
+}
+
+@starting-style{
+    .toggle-section.true{
+        opacity:0;
+    }
+}

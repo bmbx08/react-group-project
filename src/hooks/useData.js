@@ -4,7 +4,7 @@ import api from "../utils/api";
 
 
 const fetchData = () => {
-    return api.get('/shop.json?query=steadyeverywear');
+    return api.get('/shop.json?display=100&query=steadyeverywear');
   };
   
   export const useData = () => {
