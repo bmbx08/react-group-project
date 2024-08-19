@@ -2,7 +2,7 @@ import React from "react";
 import {Col, Row} from "react-bootstrap";
 import Sidebar from "./Sidebar/Sidebar";
 import ItemCard from "./ItemCard/ItemCard";
-import {useData} from "../../hooks/useData"
+import "./ItemSection.style.css"
 
 const ItemSection = ({data}) => {
   return (
@@ -11,7 +11,13 @@ const ItemSection = ({data}) => {
         <Sidebar />
       </Col>
       <Col lg={9}>
-        <ItemCard data={data} />
+        <Row className="padding-right">
+          {data?.items.map((item, index) => (
+            <Col lg={3} sm={12}>
+              <ItemCard item={item} key={index} />
+            </Col>
+          ))}
+        </Row>
       </Col>
     </Row>
   );

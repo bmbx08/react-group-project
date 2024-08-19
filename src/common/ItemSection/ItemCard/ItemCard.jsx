@@ -1,16 +1,24 @@
 import React from "react";
 import "./ItemCard.style.css";
 
-const ItemCard = ({data}) => {
-  console.log(data?.items);
+const ItemCard = ({item}) => {
+  console.log(item);
   return (
-    <div className="d-flex flex-wrap">
-      {data?.items?.map((item, index) => (
-        <div className="item-card" key={index}>
-          <img width="200" src={`${item.image}`} />
-          <div>{item.title}</div>
-        </div>
-      ))}
+    <div 
+    // style={{
+    //   backgroundImage:
+    //     "url(" +
+    //     `${item.image}` +
+    //     ")",
+    // }}
+    className="item-card">
+      <img
+        src={`${item.image}`}
+        width="200"
+        height="200"
+        className="item-img"
+      />
+      <div>{item.title}</div>
     </div>
   );
 };

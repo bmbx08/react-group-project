@@ -13,7 +13,7 @@ const Homepage = () => {
       <div>Homepage</div>
       <div className="asdf">
         {data?.items?.map((item, index) => (
-          <div className="item-card" key={index}>
+          <div className="home-card" key={index}>
             <img width="200" src={`${item.image}`} />
             <div>{item.title}</div>
           </div>
