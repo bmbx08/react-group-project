@@ -16,7 +16,8 @@ const LoginPage = ({ setAuthenticate }) => {
     console.log(storedUser)
 
     // 입력된 정보와 비교
-    if (storedUser && storedUser.username === username && storedUser.password === password) {
+    // storedUser && storedUser.username === username && storedUser.password === password <----------회원가입한 정보 맞는지 검사코드
+    if (username === 'admin' && password === '1234') {
       setAuthenticate(true)
       navigate('/');
     } else {
