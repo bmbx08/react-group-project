@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {useSearchParams} from "react-router-dom";
 import ItemSection from "../../common/ItemSection/ItemSection";
 import {useData} from "../../hooks/useData";
@@ -8,12 +8,13 @@ import SortDropdown from "./SortDropdown/SortDropdown";
 //남성/여성이면 category2 에서 남성의류/여성의류인 값들만 .map에 표시
 
 const ItemsPage = () => {
-  const [render, setRender] = useState(false);
+
   const [query, setQuery] = useSearchParams();
   const category = query.get("category");
+  const sort_method= query.get("sort_method");
   console.log("category", category);
 
-  const {data, isLoading, isError, error} = useData();
+  const {data, isLoading, isError, error} = useData(sort_method);
   console.log("data", data, isLoading);
   console.log("error", isError, error);
 

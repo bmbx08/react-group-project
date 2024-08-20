@@ -6,10 +6,43 @@
     flex-direction: column;
     align-items: center;
     width:200px;
-    height: 300px;
+    height: 350px;
 }
 
-.item-img .item-card:hover{
-    transform: scale(1.1);
+.img-container{
+    overflow:hidden;
+}
+
+.item-card:hover .item-img {
+    transform: scale(1.15);
+    transition: ease-in-out 0.3s;
+}
+
+.item-icon{
+    margin: 0 0.4em;
+    opacity: 0;
+    transition: ease-in-out 0.3s;
+}
+
+.item-card:hover .item-icon{
+    opacity:1;
     transition: ease-in-out 0.2s;
+}
+
+.item-price{
+    align-self: flex-start;
+    opacity: 0;
+    color: rgb(255, 165, 39);
+    transition: ease-in-out 0.3s;
+}
+
+.item-card:hover .item-price{
+    font-size: 0.8em;
+    color: rgb(255, 165, 39);
+    opacity:1;
+    transition: ease-in-out 0.2s;
+}
+
+.item-price::before{
+    content: "₩";
 }
