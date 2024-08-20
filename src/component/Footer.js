@@ -21,7 +21,7 @@ const Footer = () => {
     }
     return (
         <div>
-            <div>
+            <div className='main-footer'>
                 <div className='footer-1'>
                     <div className='footer-logo'>
                         Skrrrr Wear.

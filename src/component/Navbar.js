@@ -1,5 +1,5 @@
 import React from 'react'
-import { SlUser, SlUserFollow, SlBasket } from "react-icons/sl";
+import { SlUser, SlUserFollow, SlBasket, SlMagnifier } from "react-icons/sl";
 import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
@@ -40,7 +40,11 @@ const Navbar = () => {
     navigate('/create')
   }
 
-
+  const onCheckEnter = (event) => {
+    if (event.key === "Enter") {
+      navigate(`?q=${event.target.value}`);
+    }
+  };
 
   return (
     <div>
@@ -77,7 +81,12 @@ const Navbar = () => {
               <SlBasket className="shoppingCart-icon" />
               <div className='shoppingCart-text'>장바구니</div>
             </div>
-
+            <div className='search-button'>
+              <div className='search-icon'><SlMagnifier /></div>
+              <div className='search-bar'>
+                <input type='text' className='text-box' onKeyPress={onCheckEnter} />
+              </div>
+            </div>
           </div>
         </div>
       </div>
