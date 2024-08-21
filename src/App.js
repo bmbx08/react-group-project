@@ -1,4 +1,4 @@
-import {Route, Routes} from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import AppLayout from "./layout/AppLayout";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
@@ -10,8 +10,14 @@ import SignupPage from "./pages/Login/SignupPage";
 import MyCartPage from "./pages/Userpage/MyCartPage"
 import MyFavoritesPage from "./pages/Userpage/MyFavoritesPage"
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { useEffect, useState } from "react";
+import PrivateRoute from "./pages/Login/PrivateRoute";
 
 function App() {
+  let [authenticate, setAuthenticate] = useState(false) // true면 로그인이 됨 false면 로그인이 안됨
+  useEffect(() => {
+    console.log('aaaa', authenticate)
+  }, [authenticate])
   return (
     <div>
       <Routes>
@@ -19,11 +25,11 @@ function App() {
           <Route index element={<Homepage />} />
           <Route path="items">
             <Route index element={<ItemsPage />} />
-            <Route path=":id" element={<ItemDetailPage />} />
+            <Route path=":id" element={<PrivateRoute authenticate={authenticate} />} />
           </Route>
           <Route path="login">  {/* 추후 Private Path로 바꿔야함 */}
-            <Route index element={<LoginPage/>}/>
-            <Route path="signup" element={<SignupPage/>}/>
+            <Route index element={<LoginPage setAuthenticate={setAuthenticate} />} />
+            <Route path="signup" element={<SignupPage />} />
           </Route>
           <Route path="userpage">
             <Route path="MyCart" element={<MyCartPage/>} />
@@ -31,7 +37,7 @@ function App() {
           </Route>
         </Route>
 
-        <Route path="*" element={<NotFoundPage/>}/>
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </div>
   );

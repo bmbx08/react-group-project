@@ -1,0 +1,8 @@
+.loginsignup {
+    display: flex;
+}
+
+.signup{
+    margin-left: auto !important;
+    cursor: pointer;
+}
