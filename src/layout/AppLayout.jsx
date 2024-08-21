@@ -68,7 +68,6 @@ const AppLayout = () => {
 
   return (
     <div>
-      
       <div className=''>  {/* .navbar 클래스이름 bootstrap이랑 충돌남 */}
         <div className='nav-box'>
           <div className='nav-left'>

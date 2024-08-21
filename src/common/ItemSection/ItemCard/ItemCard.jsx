@@ -5,7 +5,8 @@ import cart from "../../images/item-card/cart.png";
 import magnify from "../../images/item-card/magnify.png"
 import "./ItemCard.style.css";
 
-const ItemCard = ({item}) => {
+const ItemCard = ({item,index,showProduct}) => {
+  console.log(index);
   item.title = item?.title //제목에서 문구 제거
     .replace(/[\[\]']+/g, "")
     .replace(/[()]/g, "")
@@ -51,6 +52,7 @@ const ItemCard = ({item}) => {
       //     ")",
       // }}
       className="item-card"
+      onClick={()=>showProduct(index)}
     >
       <div className="img-container">
         <img
