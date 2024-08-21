@@ -1,12 +1,11 @@
 let initialState={
-    // count:0
+    category: "모두"
 }
 
 function reducer(state=initialState,action){
     switch(action.type){
-        
-        // case "INCREMENT":
-        //     return{...state, count:state.count+1};
+        case "STORE CURRENT CATEGORY":
+            return{...state, category:action.payload.category};
         default:
             return{...state};    
     }
