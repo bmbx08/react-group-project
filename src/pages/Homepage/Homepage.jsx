@@ -1,5 +1,6 @@
 import React from "react";
 import {useData} from "../../hooks/useData";
+import Banner from "./Banner/Banner";
 import ItemSection from "../../common/ItemSection/ItemSection"
 import "./Homepage.style.css";
 
@@ -10,9 +11,7 @@ const Homepage = () => {
 
   return (
     <div>
-      <div>Homepage</div>
-      <div>banner here</div>
-
+      <Banner />
       <ItemSection data={data}/>
     </div>
   );

@@ -1,0 +1,51 @@
+.slider {
+    position: relative;
+    width: 100%;
+    height: 60vh;
+    overflow: hidden;
+}
+
+.slides {
+    position: relative;
+    width: 100%;
+    height: 95%;
+    cursor: pointer;
+}
+
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.slide.active {
+    opacity: 1;
+}
+
+.progress-bars {
+    position: absolute;
+    bottom: 0px; /* 슬라이더 아래로 바 위치 조정 */
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+}
+
+.progress-bar {
+    width: 1.5vw;
+    height: 5px;
+    margin: 0 0.3vw;
+    background-color: rgba(200, 200, 200, 0.5) !important;
+    transition: background-color 0.5s ease;
+    cursor: pointer;
+}
+
+.progress-bar.active {
+    background-color: rgba(100, 100, 100, 1) !important;
+}
