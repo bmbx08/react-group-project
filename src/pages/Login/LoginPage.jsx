@@ -18,9 +18,13 @@ const LoginPage = ({ setAuthenticate }) => {
     // 입력된 정보와 비교
     // storedUser && storedUser.username === username && storedUser.password === password <----------회원가입한 정보 맞는지 검사코드
     if (username === 'admin' && password === '1234') {
-      setAuthenticate(true)
+      setAuthenticate(true);
       navigate('/');
-    } else {
+    } else if (storedUser && storedUser.username === username && storedUser.password === password){
+      setAuthenticate(true);
+      navigate('/');
+    }
+    else {
       alert('아이디 또는 비밀번호가 잘못되었습니다.');
     }
   };
