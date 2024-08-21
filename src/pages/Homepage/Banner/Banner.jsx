@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import './Banner.style.css'
+import banner1 from "../../../common/images/banner/banner.jpg"
+import banner2 from "../../../common/images/banner/banner2.jpg"
+import banner3 from "../../../common/images/banner/banner3.jpg"
 
 const Banner = () => {
     const [currentSlide, setCurrentSlide] = useState(0);
     const slides = [
-        'https://img2.quasarzone.com/editor/2022/04/08/ecbd2b60ec7ea4b44cbdbfeee980b8c9.jpg',
-        'https://img2.quasarzone.com/editor/2022/04/08/37198caa7179edfad4a669332d930390.jpg',
-        'https://img2.quasarzone.com/editor/2022/04/08/acd75a48616fecb3dcb8eb7e19c4bf1f.jpg',
+        banner1,banner2,banner3,
+        'https://ih1.redbubble.net/image.1108696597.9907/flat,750x,075,f-pad,750x1000,f8f8f8.u1.jpg',
+        // 'https://s14354.pcdn.co/wp-content/uploads/2019/02/clark-street-mercantile-33919-unsplash-768x549.jpg',
     ]
 
     useEffect(() => {

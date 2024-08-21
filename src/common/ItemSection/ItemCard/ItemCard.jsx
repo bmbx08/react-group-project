@@ -1,8 +1,8 @@
 import React from "react";
-import emptyHeart from "../../images/emptyheart3.png";
-import fullHeart from "../../images/fullheart.png";
-import cart from "../../images/cart.png";
-import magnify from "../../images/magnify.png"
+import emptyHeart from "../../images/item-card/emptyheart3.png";
+import fullHeart from "../../images/item-card/fullheart.png";
+import cart from "../../images/item-card/cart.png";
+import magnify from "../../images/item-card/magnify.png"
 import "./ItemCard.style.css";
 
 const ItemCard = ({item}) => {
