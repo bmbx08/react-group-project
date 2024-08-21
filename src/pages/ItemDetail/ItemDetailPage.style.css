@@ -149,3 +149,38 @@
   min-height: 100vh; /* Ensures each section takes at least one viewport height */
   border-bottom: 1px solid #ddd; /* Optional: Border between sections */
 }
+
+/* pagination */
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+}
+
+.pagination li {
+  border: 1px solid gray;
+  margin: 0 5px;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.pagination li a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.pagination li.active {
+  background-color: rgb(226, 224, 224);
+  color: black;
+}
+
+.pagination li.active a {
+  color: black;
+}
+
+.pagination li:hover {
+  background-color: #f0f0f0;
+}

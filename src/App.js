@@ -7,6 +7,8 @@ import ItemsPage from "./pages/Items/ItemsPage";
 import ItemDetailPage from "./pages/ItemDetail/ItemDetailPage";
 import LoginPage from "./pages/Login/LoginPage";
 import SignupPage from "./pages/Login/SignupPage";
+import MyCartPage from "./pages/Userpage/MyCartPage"
+import MyFavoritesPage from "./pages/Userpage/MyFavoritesPage"
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
@@ -22,6 +24,10 @@ function App() {
           <Route path="login">  {/* 추후 Private Path로 바꿔야함 */}
             <Route index element={<LoginPage/>}/>
             <Route path="signup" element={<SignupPage/>}/>
+          </Route>
+          <Route path="userpage">
+            <Route path="MyCart" element={<MyCartPage/>} />
+            <Route path="favorite" element={<MyFavoritesPage/>} />
           </Route>
         </Route>
 
