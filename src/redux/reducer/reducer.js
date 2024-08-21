@@ -1,4 +1,5 @@
 let initialState = {
+  category: "모두",
   productList: [],
   totalPrice: 0,
 };
@@ -6,6 +7,8 @@ let initialState = {
 function reducer(state = initialState, action) {
   const { type, payload } = action;
   switch (type) {
+    case "STORE CURRENT CATEGORY":
+            return{...state, category:payload.category};
     case 'ADD_CART':
       const existingProduct = state.productList.find(
         product =>

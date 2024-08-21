@@ -3,14 +3,17 @@ import api from "../utils/api";
 
 
 
-const fetchData = () => {
-    return api.get('/shop.json?query=steadyeverywear');
+const fetchData = (sort_method) => {
+    // if(sort_method)
+    //   return api.get(`/shop.json?display=100&query=steadyeverywear&sort=${sort_method}`);
+    // else
+      return api.get('/shop.json?display=100&query=steadyeverywear');
   };
   
-  export const useData = () => {
+  export const useData = (sort_method) => {
     return useQuery({
-      queryKey: ["product-data"],
-      queryFn: fetchData,
+      queryKey: ["product-data",sort_method],
+      queryFn: ()=>fetchData(sort_method),
       select:(result)=>result.data
     });
   };
