@@ -4,7 +4,7 @@ import Sidebar from "./Sidebar/Sidebar";
 import ItemCard from "./ItemCard/ItemCard";
 import "./ItemSection.style.css"
 
-const ItemSection = ({data,showProduct}) => {
+const ItemSection = ({data}) => {
   return (
     <Row>
       <Col lg={3}>
@@ -14,7 +14,7 @@ const ItemSection = ({data,showProduct}) => {
         <Row className="padding-right">
           {data?.items.map((item, index) => (
             <Col lg={3} sm={12}>
-              <ItemCard item={item} index={index} showProduct={showProduct}/>
+              <ItemCard item={item} index={index}/>
             </Col>
           ))}
         </Row>

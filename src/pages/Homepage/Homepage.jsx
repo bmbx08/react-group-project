@@ -1,19 +1,14 @@
 import React from "react";
 import {useData} from "../../hooks/useData";
-import { useNavigate } from "react-router-dom";
 import Banner from "./Banner/Banner";
 import ItemSection from "../../common/ItemSection/ItemSection"
 import "./Homepage.style.css";
 
 const Homepage = () => {
   const {data, isLoading, isError, error} = useData();
-  const navigate = useNavigate();
   console.log("data", data, isLoading);
   console.log("error", isError, error);
 
-  const showProduct = (index) => {
-    navigate(`/items/${index}`)
-  }
   return (
     <div>
       {/* <div className="d-flex">
@@ -25,7 +20,7 @@ const Homepage = () => {
         ))}
       </div> */}
       <Banner />
-      <ItemSection data={data} showProduct={showProduct}/>
+      <ItemSection data={data} />
     </div>
   );
 };

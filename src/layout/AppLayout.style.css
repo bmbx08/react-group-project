@@ -136,6 +136,8 @@
 
 .main-footer {
     font-family: 'main-font';
+    position: absolute;
+    
 }
 
 .footer-logo {
