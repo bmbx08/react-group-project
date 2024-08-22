@@ -51,24 +51,24 @@ const AppLayout = () => {
   };
 
   // Footer functions
-  // const url = "https://github.com/bmbx08/react-group-project"
-  //   const goToGit = () => {
-  //       window.open(url)
-  //   }
+  const url = "https://github.com/bmbx08/react-group-project"
+    const goToGit = () => {
+        window.open(url)
+    }
 
-  //   const goToTc = () => {
-  //       navigate('/terms&conditions')
-  //   }
-  //   const goToG = () => {
-  //       navigate('/guide')
-  //   }
-  //   const goToPp = () => {
-  //       navigate('/policyprivacy')
-  //   }
+    const goToTc = () => {
+        navigate('/terms&conditions')
+    }
+    const goToG = () => {
+        navigate('/guide')
+    }
+    const goToPp = () => {
+        navigate('/policyprivacy')
+    }
 
   return (
     <div>
-      <div className='applayout'>  {/* .navbar 클래스이름 bootstrap이랑 충돌남 */}
+      <div className=''>  {/* .navbar 클래스이름 bootstrap이랑 충돌남 */}
         <div className='nav-box'>
           <div className='nav-left'>
             <div className='item-button' onClick={goToItem}>

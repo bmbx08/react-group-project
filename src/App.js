@@ -38,11 +38,11 @@ function App() {
             <Route path="myCart" element={<MyCartPrivateRoute authenticate={authenticate} />} />
             <Route path="favorite" element={<MyFavoritesPrivateRoute authenticate={authenticate}/>} />
           </Route>
-          
         </Route>
 
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
+      <Footer/>
     </div>
   );
 }

@@ -1,11 +1,12 @@
 import React from "react";
-import {useData} from "../../hooks/useData";
+import { useHomeData } from "../../hooks/useHomeData";
 import Banner from "./Banner/Banner";
 import ItemSection from "../../common/ItemSection/ItemSection"
 import "./Homepage.style.css";
 
 const Homepage = () => {
-  const {data, isLoading, isError, error} = useData();
+  const displayAmount = 12;
+  const {data, isLoading, isError, error} = useHomeData(displayAmount);
   console.log("data", data, isLoading);
   console.log("error", isError, error);
 
