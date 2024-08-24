@@ -1,5 +1,5 @@
 import React from 'react'
-import MyFavoritesPage from '../Userpage/MyFavoritesPage'
+import MyFavoritesPage from '../Userpage/MyFavorites/MyFavoritesPage'
 import { Navigate } from 'react-router-dom'
 
 const MyFavoritesPrivateRoute = ({authenticate}) => {
