@@ -25,7 +25,7 @@ const MyInfoPage = () => {
   }, []);
 
   const profileImage =
-    gender === "Female"
+    gender === "female"
       ? "https://i.pinimg.com/736x/d2/c2/f6/d2c2f676a3533d92ca55addd26aa19c2.jpg"
       : "https://cdn-icons-png.flaticon.com/512/1077/1077063.png";
 
