@@ -43,7 +43,7 @@ function reducer(state = initialState, action) {
           product.name === payload.name &&
           product.color === payload.color &&
           product.size === payload.size
-            ? {...product, quantity: payload.quantity}
+            ? {  ...product, quantity: payload.quantity }
             : product
         );
 

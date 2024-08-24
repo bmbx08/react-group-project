@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 import ItemDetailPrivateRoute from "./pages/Login/ItemDetailPrivateRoute";
 import MyCartPrivateRoute from "./pages/Login/MyCartPrivateRoute";
 import MyFavoritesPrivateRoute from "./pages/Login/MyFavoritesPrivateRoute";
+import SiteIntroductionPage from './pages/SiteIntroductionPage/SiteIntroductionPage';
 import Footer from "./layout/Footer";
 import MyInfoPage from "./pages/Userpage/MyInfoPage";
 
@@ -36,6 +37,9 @@ function App() {
             <Route index element={<MyInfoPage/>}/>
             <Route path="myCart" element={<MyCartPrivateRoute authenticate={authenticate} />} />
             <Route path="favorite" element={<MyFavoritesPrivateRoute authenticate={authenticate}/>} />
+          </Route>
+          <Route path="shopinfo" element={<SiteIntroductionPage/>}>
+            
           </Route>
         </Route>
 
