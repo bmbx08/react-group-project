@@ -21,7 +21,9 @@ const Sidebar = () => {
 
   const getCategoryItems=(event)=>{ 
       navigate(`/items/?category=${event.target.innerHTML}`);
-      dispatch({type:"STORE CURRENT CATEGORY", payload: {category:event.target.innerHTML} })
+      dispatch({type:"STORE_CURRENT_CATEGORY", payload: {category:event.target.innerHTML} })
+      dispatch({type:"RESET_KEYWORD"})
+      
   }
 
   return (

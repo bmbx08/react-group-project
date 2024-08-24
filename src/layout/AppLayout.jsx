@@ -39,8 +39,8 @@ const AppLayout = () => {
   };
 
   const goToShoppingCart = () => {
-    navigate("/cart");
-  };
+    navigate('/userpage/myCart')
+  }
 
   const goToSignUp = () => {
     navigate("/login/signup");

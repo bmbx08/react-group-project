@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { Form, Button, Container } from 'react-bootstrap';
-import { useNavigate, useOutletContext } from 'react-router-dom';
-import './LoginPage.style.css';
+import { useNavigate, useLocation } from 'react-router-dom';
+import './LoginPage.style.css'
 
-const LoginPage = () => {
+const LoginPage = ({setAuthenticate}) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
-  const { setIsLoggedIn } = useOutletContext(); // setIsLoggedIn을 객체에서 가져옴
+  const location = useLocation();
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -18,11 +18,10 @@ const LoginPage = () => {
 
     // 입력된 정보와 비교
     if (username === 'admin' && password === '1234') {
-      setIsLoggedIn(true);
-      navigate('/');
-    } else if (storedUser && storedUser.username === username && storedUser.password === password) {
-      setIsLoggedIn(true);
-      navigate('/');
+      setAuthenticate(true)
+      // 로그인 전에 있던 페이지로 리디렉션, 없으면 홈으로
+      const redirectTo = location.state?.from?.pathname || '/';
+      navigate(redirectTo);
     } else {
       alert('아이디 또는 비밀번호가 잘못되었습니다.');
     }
