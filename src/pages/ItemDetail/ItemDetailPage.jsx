@@ -747,7 +747,7 @@ const detailData = data?.items.find((item) => {
       </Row>
 
       {/* 모달 컴포넌트 */}
-      <Modal show={showModal} onHide={handleCloseModal}>
+      < Modal show={showModal} onHide={handleCloseModal} >
         <Modal.Header closeButton>
           <Modal.Title>장바구니 담기</Modal.Title>
         </Modal.Header>

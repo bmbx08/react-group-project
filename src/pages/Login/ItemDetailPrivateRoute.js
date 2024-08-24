@@ -1,11 +1,17 @@
 import React from 'react'
 import ItemDetailPage from '../ItemDetail/ItemDetailPage'
-import { Navigate } from 'react-router-dom'
+import { Navigate, useLocation } from 'react-router-dom'
 
 const ItemDetailPrivateRoute = ({ authenticate }) => {
+    const location = useLocation()
+
     return (
-        authenticate == true ? <ItemDetailPage /> : <Navigate to="/login" />
-    )
+        authenticate ? (
+            <ItemDetailPage />
+        ) : (
+            <Navigate to="/login" state={{ from: location }} />
+        )
+    );
 }
 
 export default ItemDetailPrivateRoute 
