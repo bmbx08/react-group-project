@@ -1,7 +1,7 @@
-import { React, useState } from 'react';
+import { React, useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useDetail } from '../../hooks/useDetail';
-import { Col, Container, Row, Modal, Button } from 'react-bootstrap';
+import { Col, Container, Row, Modal, Button, Form } from 'react-bootstrap';
 import './ItemDetailPage.style.css';
 import DropdownBox from './DropdownBox';
 import { useDispatch } from 'react-redux';
@@ -17,10 +17,28 @@ const ItemDetailPage = () => {
   const [quantity, setQuantity] = useState(1);
   const [pageTotalPrice, setPageTotalPrice] = useState(0);
   const [showModal, setShowModal] = useState(false); // 모달 상태 추가
+  const [showReviewModal, setShowReviewModal] = useState(false); // 리뷰 모달 상태
   const [scannerPos, setScannerPos] = useState({ x: 0, y: 0 });
   const [isHovered, setIsHovered] = useState(false);
   const [activeTab, setActiveTab] = useState('detail');
   const [showPaymentModal, setShowPaymentModal] = useState(false);
+  const [reviews, setReviews] = useState([]); // 리뷰 상태
+  const [reviewText, setReviewText] = useState('');
+  const [reviewRating, setReviewRating] = useState(5);
+  const [editIndex, setEditIndex] = useState(null);
+  const [qnas, setQnas] = useState([]);
+  const [showQnaModal, setShowQnaModal] = useState(false);
+  const [qnaText, setQnaText] = useState('');
+  const [isPrivate, setIsPrivate] = useState(false);
+  const [selectedQnaIndex, setSelectedQnaIndex] = useState(null);
+
+  const storedUser = JSON.parse(localStorage.getItem('user'));
+  console.log(storedUser)
+
+  // 로그인된 유저 정보 (예시)
+  const loggedInUser = {
+    name: storedUser?.name || 'Guest', // storedUser가 존재하면 name을 가져오고, 없으면 기본값 'Guest'
+  };
 
   const sizes = ['S', 'M', 'L'];
   const colors = ['blue', 'green', 'pink', 'gray', 'yellow'];
@@ -76,7 +94,7 @@ const ItemDetailPage = () => {
           img: detailData?.image,
           color: selectedColor,
           size: selectedSize,
-          quantity : quantity,
+          quantity: quantity,
         },
       });
 
@@ -108,6 +126,102 @@ const ItemDetailPage = () => {
     setShowModal(false);
   };
 
+  const handleShowReviewModal = () => setShowReviewModal(true);
+  const handleCloseReviewModal = () => {
+    setShowReviewModal(false)
+    setReviewText('');
+    setReviewRating(5);
+    setEditIndex(null);
+  };
+
+  const handleShowQnaModal = () => setShowQnaModal(true);
+  const handleCloseQnaModal = () => {
+    setShowQnaModal(false);
+    setQnaText('');
+    setIsPrivate(false);
+    setEditIndex(null);
+  };
+
+  const handleAddReview = (e) => {
+    e.preventDefault();
+
+    const newReview = {
+      name: loggedInUser.name,
+      text: reviewText,
+      rating: reviewRating,
+      date: new Date().toLocaleDateString(),
+    };
+
+    if (editIndex !== null) {
+      // 수정 모드
+      const updatedReviews = [...reviews];
+      updatedReviews[editIndex] = newReview;
+      setReviews(updatedReviews);
+    } else {
+      // 새 리뷰 추가 모드
+      setReviews([...reviews, newReview]);
+    }
+
+    handleCloseReviewModal();
+  };
+
+  const handleEditReview = (index) => {
+    setEditIndex(index);
+    setReviewText(reviews[index].text);
+    setReviewRating(reviews[index].rating);
+    handleShowReviewModal();
+  };
+
+  const handleDeleteReview = (index) => {
+    const updatedReviews = reviews.filter((_, i) => i !== index);
+    setReviews(updatedReviews);
+  };
+
+  const handleAddQna = (e) => {
+    e.preventDefault();
+
+    const newQna = {
+      name: loggedInUser.name,
+      text: qnaText,
+      date: new Date().toLocaleDateString(),
+      isPrivate,
+    };
+
+    if (editIndex !== null) {
+      // 수정 모드
+      const updatedQnas = [...qnas];
+      updatedQnas[editIndex] = newQna;
+      setQnas(updatedQnas);
+    } else {
+      // 새 Q&A 추가 모드
+      setQnas([...qnas, newQna]);
+    }
+
+    handleCloseQnaModal();
+  };
+
+  const handleEditQna = (index) => {
+    setEditIndex(index);
+    setQnaText(qnas[index].text);
+    setIsPrivate(qnas[index].isPrivate);
+    handleShowQnaModal();
+  };
+
+  const handleDeleteQna = (index) => {
+    const updatedQnas = qnas.filter((_, i) => i !== index);
+    setQnas(updatedQnas);
+  };
+
+  const handleToggleVisibility = (index) => {
+    const updatedQnas = [...qnas];
+    updatedQnas[index].isPrivate = !updatedQnas[index].isPrivate;
+    setQnas(updatedQnas);
+  };
+
+  const handleSelectQna = (index) => {
+    setSelectedQnaIndex(index === selectedQnaIndex ? null : index);
+  };
+
   return (
     <Container>
       <Row>
@@ -117,7 +231,7 @@ const ItemDetailPage = () => {
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
           >
-            <img src={detailData?.image} alt="" style={{ width: '600px', height:`600px`, border: `1px solid #ddd` }} />
+            <img src={detailData?.image} alt="" style={{ width: '600px', height: `600px`, border: `1px solid #ddd` }} />
             {isHovered && (
               <div
                 className="scanner-box"
@@ -153,7 +267,7 @@ const ItemDetailPage = () => {
           <div className='text_title'>{detailData?.title?.replace(/<\/?b>/g, '').replace(/스테디에브리웨어/g, '').replace(/Steady Every Wear/g, '')}</div>
           <div className='text_price'>KRW {detailData?.lprice}</div>
           <hr />
-          
+
           <div className="product-options">
             <div className="size-options">
               <p>SIZE</p>
@@ -184,9 +298,9 @@ const ItemDetailPage = () => {
               </div>
             </div>
           </div>
-          
+
           <div className="">
-            <hr/>
+            <hr />
             {selectedSize && selectedColor && (
               <div>
                 <p>Selected Size: {selectedSize}</p>
@@ -200,17 +314,17 @@ const ItemDetailPage = () => {
               </div>
             )}
           </div>
-          <hr/>
+          <hr />
           <div> <b>총 상품 금액 및 수량</b>: <b>KRW {pageTotalPrice}</b> ({quantity}개)</div>
-          
+
           <div className="button-group">
             <button className="add-to-cart" onClick={handleAddToCart}>ADD TO CART</button>
-            
-              <button className="buy-now">BUY NOW</button>
-            
+
+            <button className="buy-now">BUY NOW</button>
+
             <button className="wish-list">❤️ WISH LIST</button>
           </div>
-          
+
           <div>
             <DropdownBox
               title="제품 소재 정보"
@@ -227,7 +341,7 @@ const ItemDetailPage = () => {
           </div>
         </Col>
       </Row>
-      
+
       <Row>
         <div className="tab-container">
           <div
@@ -250,44 +364,183 @@ const ItemDetailPage = () => {
           </div>
         </div>
       </Row>
-      
+
       <Row id="detail" className="section">
-        <hr/>
+        <hr />
         DETAIL
-        <img src={detailData?.image} alt="" style={{ width: '600px', height:`600px`, border: `1px solid #ddd` }} />
-        <img src={detailData?.image} alt="" style={{ width: '600px', height:`600px`, border: `1px solid #ddd` }} />
-        <img src={detailData?.image} alt="" style={{ width: '600px', height:`600px`, border: `1px solid #ddd` }} />
-        <img src={detailData?.image} alt="" style={{ width: '600px', height:`600px`, border: `1px solid #ddd` }} />
-        <img src={detailData?.image} alt="" style={{ width: '600px', height:`600px`, border: `1px solid #ddd` }} />
-        <img src={detailData?.image} alt="" style={{ width: '600px', height:`600px`, border: `1px solid #ddd` }} />
-        <hr/>
+        <img src={detailData?.image} alt="" style={{ width: '600px', height: `600px`, border: `1px solid #ddd` }} />
+        <img src={detailData?.image} alt="" style={{ width: '600px', height: `600px`, border: `1px solid #ddd` }} />
+        <img src={detailData?.image} alt="" style={{ width: '600px', height: `600px`, border: `1px solid #ddd` }} />
+        <img src={detailData?.image} alt="" style={{ width: '600px', height: `600px`, border: `1px solid #ddd` }} />
+        <img src={detailData?.image} alt="" style={{ width: '600px', height: `600px`, border: `1px solid #ddd` }} />
+        <img src={detailData?.image} alt="" style={{ width: '600px', height: `600px`, border: `1px solid #ddd` }} />
+        <hr />
       </Row>
-      
+
       <Row id="review" className="section">
-        <hr/>
-        REVIEW
-        <hr/>
+        <hr />
+        <h2>REVIEW</h2>
+        <hr />
+        <div className="review-item">
+          <h4>홍길동</h4>
+          <div style={{ display: 'flex' }}>
+            <h4>⭐ 5.0</h4>
+            <p style={{ marginLeft: '10px', marginTop: '4px' }}>2024. 8. 11.</p>
+          </div>
+          <p>이 제품 정말 많이 애용해요!!!</p>
+          <Button variant="secondary">
+            수정
+          </Button>
+          <Button variant="danger">
+            삭제
+          </Button>
+          <hr />
+        </div>
+        <div className="review-item">
+          <h4>강전하</h4>
+          <div style={{ display: 'flex' }}>
+            <h4>⭐ 1.0</h4>
+            <p style={{ marginLeft: '10px', marginTop: '4px' }}>2024. 8. 24.</p>
+          </div>
+          <p>별 1점도 아깝습니다...</p>
+          <Button variant="secondary">
+            수정
+          </Button>
+          <Button variant="danger">
+            삭제
+          </Button>
+          <hr />
+        </div>
+        {reviews.length > 0 ? (
+          reviews.map((review, index) => (
+            <div key={index} className="review-item">
+              <h4>{review.name}</h4>
+              <div style={{ display: 'flex' }}>
+                <h4>⭐ {review.rating}.0</h4>
+                <p style={{ marginLeft: '10px', marginTop: '4px' }}>{review.date}</p>
+              </div>
+              <p>{review.text}</p>
+              <Button variant="secondary" onClick={() => handleEditReview(index)}>
+                수정
+              </Button>
+              <Button variant="danger" onClick={() => handleDeleteReview(index)}>
+                삭제
+              </Button>
+              <hr />
+            </div>
+          ))
+        ) : (
+          <p></p>
+        )}
+        <Button variant="white" onClick={handleShowReviewModal} style={{ borderColor: 'gray' }}>리뷰 작성</Button>
+
       </Row>
-      
+
       <Row id="qa" className="section">
-        <hr/>
-        Q&A
-        <hr/>
+        <hr />
+        <h2>Q&A</h2>
+        <hr />
+        <div>
+          <div className="qna-item">
+            <h6>상품상세문의</h6>
+            <p>비공개 문의입니다.</p>
+            <p>2024. 5. 23.</p>
+            <Button variant="link" >
+              열람
+            </Button>
+            <Button variant="secondary">
+              수정
+            </Button>
+            <Button variant="danger">
+              삭제
+            </Button>
+            <Button variant="warning">
+              공개로 전환
+            </Button>
+            <hr />
+          </div>
+          {/* Q&A 섹션 */}
+
+          {qnas.length > 0 ? (
+            qnas.map((qna, index) => (
+              <div key={index} className="qna-item">
+                <h6>상품상세문의</h6>
+
+                {qna.isPrivate ? (
+                  <p>비공개 문의입니다.</p>
+                ) : (
+                  selectedQnaIndex === index && <p>{qna.text}</p>
+                )}
+                <p>{qna.date}</p>
+                <Button variant="link" onClick={() => handleSelectQna(index)}>
+                  {selectedQnaIndex === index ? '닫기' : '열람'}
+                </Button>
+                <Button variant="secondary" onClick={() => handleEditQna(index)}>
+                  수정
+                </Button>
+                <Button variant="danger" onClick={() => handleDeleteQna(index)}>
+                  삭제
+                </Button>
+                <Button variant="warning" onClick={() => handleToggleVisibility(index)}>
+                  {qna.isPrivate ? '공개로 전환' : '비공개로 전환'}
+                </Button>
+                <hr />
+              </div>
+            ))
+          ) : (
+            <p></p>
+          )}
+
+          {/* Q&A 작성 모달 */}
+          <Modal show={showQnaModal} onHide={handleCloseQnaModal}>
+            <Modal.Header closeButton>
+              <Modal.Title>{editIndex !== null ? '문의 수정' : '문의 작성'}</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <Form onSubmit={handleAddQna}>
+                <Form.Group controlId="qnaText">
+                  <Form.Label>문의 내용</Form.Label>
+                  <Form.Control
+                    as="textarea"
+                    rows={3}
+                    value={qnaText}
+                    onChange={(e) => setQnaText(e.target.value)}
+                    required
+                  />
+                </Form.Group>
+                <Form.Group controlId="isPrivate">
+                  <Form.Check
+                    type="checkbox"
+                    label="비공개"
+                    checked={isPrivate}
+                    onChange={(e) => setIsPrivate(e.target.checked)}
+                  />
+                </Form.Group>
+                <Button variant="dark" type="submit">
+                  {editIndex !== null ? '문의 수정' : '문의 작성'}
+                </Button>
+              </Form>
+            </Modal.Body>
+          </Modal>
+        </div>
+        <Button variant="white" onClick={handleShowQnaModal} style={{ borderColor: 'gray' }}>
+          문의 작성
+        </Button>
       </Row>
 
       {/* 모달 컴포넌트 */}
-      <Modal show={showModal} onHide={handleCloseModal}>
+      < Modal show={showModal} onHide={handleCloseModal} >
         <Modal.Header closeButton>
           <Modal.Title>장바구니 담기</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <p>(총 {quantity}개)</p>
-          <img src={detailData?.image} alt="" style={{ width: '100px', height:`100px`, marginBottom: '10px' }} />
+          <img src={detailData?.image} alt="" style={{ width: '100px', height: `100px`, marginBottom: '10px' }} />
           <div><strong>{detailData?.title}</strong></div>
           <div style={{ color: 'gray' }}>[옵션: {selectedColor}/{selectedSize}]</div>
           <div>가격: KRW {pageTotalPrice}</div>
           <div>수량: {quantity}</div>
-          <ReactPaginate 
+          <ReactPaginate
             previousLabel={'<'}
             nextLabel={'>'}
             breakLabel={'...'}
@@ -308,14 +561,54 @@ const ItemDetailPage = () => {
           <Button variant="success" onClick={handleShowPaymentModal}>
             바로 구매하기
           </Button>
-          
+
         </Modal.Footer>
       </Modal>
+
+      {/* 리뷰 작성 모달 */}
+      <Modal show={showReviewModal} onHide={handleCloseReviewModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>{editIndex !== null ? '리뷰 수정' : '리뷰 작성'}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form onSubmit={handleAddReview}>
+            <Form.Group controlId="reviewText">
+              <Form.Label>리뷰 내용</Form.Label>
+              <Form.Control
+                as="textarea"
+                rows={3}
+                value={reviewText}
+                onChange={(e) => setReviewText(e.target.value)}
+                required
+              />
+            </Form.Group>
+            <Form.Group controlId="rating">
+              <Form.Label>별점</Form.Label>
+              <Form.Control
+                as="select"
+                value={reviewRating}
+                onChange={(e) => setReviewRating(Number(e.target.value))}
+                required
+              >
+                <option value="5">5 - Excellent</option>
+                <option value="4">4 - Good</option>
+                <option value="3">3 - Average</option>
+                <option value="2">2 - Below Average</option>
+                <option value="1">1 - Poor</option>
+              </Form.Control>
+            </Form.Group>
+            <Button variant="dark" type="submit">
+              {editIndex !== null ? '리뷰 수정' : '리뷰 작성'}
+            </Button>
+          </Form>
+        </Modal.Body>
+      </Modal>
+
       {/* 결제 모달 */}
-      <ModalPayment 
-        show={showPaymentModal} 
-        handleClose={handleClosePaymentModal} 
-        totalPrice={pageTotalPrice} 
+      <ModalPayment
+        show={showPaymentModal}
+        handleClose={handleClosePaymentModal}
+        totalPrice={pageTotalPrice}
       />
     </Container>
   );

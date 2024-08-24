@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { Form, Button, Container } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import './LoginPage.style.css'
 
 const LoginPage = ({ setAuthenticate }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -19,7 +20,9 @@ const LoginPage = ({ setAuthenticate }) => {
     // storedUser && storedUser.username === username && storedUser.password === password <----------회원가입한 정보 맞는지 검사코드
     if (username === 'admin' && password === '1234') {
       setAuthenticate(true)
-      navigate('/');
+      // 로그인 전에 있던 페이지로 리디렉션, 없으면 홈으로
+      const redirectTo = location.state?.from?.pathname || '/';
+      navigate(redirectTo);
     } else {
       alert('아이디 또는 비밀번호가 잘못되었습니다.');
     }
