@@ -4,6 +4,7 @@ import AppLayout from "./layout/AppLayout";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 import Homepage from "./pages/Homepage/Homepage";
 import ItemsPage from "./pages/Items/ItemsPage";
+import MyInfoPage from "./pages/Userpage/MyInfoPage";
 import LoginPage from "./pages/Login/LoginPage";
 import SignupPage from "./pages/Login/SignupPage";
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -13,7 +14,6 @@ import MyCartPrivateRoute from "./pages/Login/MyCartPrivateRoute";
 import MyFavoritesPrivateRoute from "./pages/Login/MyFavoritesPrivateRoute";
 import SiteIntroductionPage from './pages/SiteIntroductionPage/SiteIntroductionPage';
 import Footer from "./layout/Footer";
-import MyInfoPage from "./pages/Userpage/MyInfoPage";
 
 function App() {
   let [authenticate, setAuthenticate] = useState(false) // true면 로그인이 됨 false면 로그인이 안됨
@@ -36,7 +36,7 @@ function App() {
           <Route path="userpage">
             <Route index element={<MyInfoPage/>}/>
             <Route path="myCart" element={<MyCartPrivateRoute authenticate={authenticate} />} />
-            <Route path="favorite" element={<MyFavoritesPrivateRoute authenticate={authenticate}/>} />
+            <Route path="favorite" element={<MyFavoritesPrivateRoute authenticate={authenticate} />} />
           </Route>
           <Route path="shopinfo" element={<SiteIntroductionPage/>}>
             
