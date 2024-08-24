@@ -1,12 +1,15 @@
-import React from "react";
+import {React, useState} from "react";
 import emptyHeart from "../../images/item-card/emptyheart3.png";
-import fullHeart from "../../images/item-card/fullheart.png";
 import cart from "../../images/item-card/cart.png";
 import magnify from "../../images/item-card/magnify.png"
+import AddToCartModal from '../../../pages/component/Modal/AddToCartModal';
 import "./ItemCard.style.css";
 
-const ItemCard = ({item,index,showProduct}) => {
-  console.log(index);
+const ItemCard = ({item,index,showProduct ,data}) => {
+  // console.log(index);
+  // console.log(data)
+  const [showModal, setShowModal] = useState(false);
+  const [selectedItemIndex, setSelectedItemIndex] = useState(null);
   item.title = item?.title //제목에서 문구 제거
     .replace(/[\[\]']+/g, "")
     .replace(/[()]/g, "")
@@ -43,36 +46,47 @@ const ItemCard = ({item,index,showProduct}) => {
     
     item.lprice=item?.lprice.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
-  return (
-    <div
-      // style={{
-      //   backgroundImage:
-      //     "url(" +
-      //     `${item.image}` +
-      //     ")",
-      // }}
-      className="item-card"
-      onClick={()=>showProduct(index)}
-    >
-      <div className="img-container">
-        <img
-          src={`${item?.image}`}
-          width="200"
-          height="200"
-          className="item-img"
+    const handleAddToCartClick = (itemIndex) => {
+      setSelectedItemIndex(itemIndex); // 클릭한 아이템의 index를 상태로 저장
+      setShowModal(true);
+    };
+  
+    const handleCloseModal = () => {
+      setShowModal(false);
+      setSelectedItemIndex(null); // 모달을 닫으면 index 상태 초기화
+    };
+  
+    return (
+      <div className="item-card" onClick={() => showProduct(index)}>
+        <div className="img-container">
+          <img
+            src={`${item?.image}`}
+            width="200"
+            height="200"
+            className="item-img"
+            alt=''
+          />
+        </div>
+        <div>
+          <img src={emptyHeart} width="15" height="15" className="item-icon" alt=''/>
+          <img src={cart} width="18" height="16" className="item-icon" onClick={(e) => {
+            e.stopPropagation(); // 부모 요소의 클릭 이벤트 방지
+            handleAddToCartClick(index);
+          }} alt=''/>
+          <img src={magnify} width="15" height="15" className="item-icon" alt=''/>
+        </div>
+        <div>{item?.title}</div>
+        <div className="item-price">{item?.lprice}</div>
+  
+        {/* 모달 창 */}
+        <AddToCartModal 
+          show={showModal} 
+          handleClose={handleCloseModal} 
+          item={item} 
+          index={selectedItemIndex} 
         />
       </div>
-      <div>
-        <img src={emptyHeart} width="15" height="15" className="item-icon"/>
-        {/* <img src={fullHeart} width="15" height="15" /> */}
-        <img src={cart} width="18" height="16" className="item-icon"/>
-        <img src={magnify} width="15" height="15" className="item-icon"/>
-      </div>
-
-      <div>{item?.title}</div>
-      <div className="item-price">{item?.lprice}</div>
-    </div>
-  );
+    );
 };
 
 export default ItemCard;

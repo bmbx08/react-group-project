@@ -8,7 +8,8 @@ function reducer(state = initialState, action) {
   const { type, payload } = action;
   switch (type) {
     case "STORE CURRENT CATEGORY":
-            return{...state, category:payload.category};
+      return { ...state, category: payload.category };
+
     case 'ADD_CART':
       const existingProduct = state.productList.find(
         product =>
@@ -23,7 +24,7 @@ function reducer(state = initialState, action) {
           product.name === payload.name &&
           product.color === payload.color &&
           product.size === payload.size
-            ? { ...product, quantity: payload.quantity }
+            ? {  ...product, quantity: payload.quantity }
             : product
         );
 

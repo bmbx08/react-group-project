@@ -14,6 +14,7 @@ import { useEffect, useState } from "react";
 import ItemDetailPrivateRoute from "./pages/Login/ItemDetailPrivateRoute";
 import MyCartPrivateRoute from "./pages/Login/MyCartPrivateRoute";
 import MyFavoritesPrivateRoute from "./pages/Login/MyFavoritesPrivateRoute";
+import SiteIntroductionPage from './pages/SiteIntroductionPage/SiteIntroductionPage';
 
 function App() {
   let [authenticate, setAuthenticate] = useState(false) // true면 로그인이 됨 false면 로그인이 안됨
@@ -36,6 +37,9 @@ function App() {
           <Route path="userpage">
             <Route path="myCart" element={<MyCartPrivateRoute authenticate={authenticate} />} />
             <Route path="favorite" element={<MyFavoritesPrivateRoute authenticate={authenticate}/>} />
+          </Route>
+          <Route path="shopinfo" element={<SiteIntroductionPage/>}>
+            
           </Route>
         </Route>
 

@@ -33,6 +33,38 @@ const ItemDetailPage = () => {
   }
 
   const detailData = data?.items[id];
+  const detailTitle = detailData?.title?.replace(/[\[\]']+/g, "")
+    .replace(/[()]/g, "")
+    .replace(/<b>/g, "")
+    .replace(/<\/b>/g, "")
+    .replace(/,/g, "")
+    .replace(/steadyeverywear/g, "")
+    .replace(/Steady Every Wear/g, "")
+    .replace(/STEADY EVERY WEAR/g, "")
+    .replace(/STEADYEVERYWEAR/g, "")
+    .replace(/Steady Every wear/g, "")
+    .replace(/Steady Everywear/g, "")
+    .replace(/재입고/g, "")
+    
+    .replace("A-2", "")
+    .replace(/맨투맨 2/g, "Daily Long-sleeved Sweatshirt")
+    .replace(/하프 슬리브드 바스크/g, "Half-Sleeved Basque")
+    .replace(/레귤러 스트레이트 데님 팬츠/g, "Regular Straight Denim Pants")
+    .replace(/블랙/g, "Black")
+    .replace(/크림/g, "Cream")
+    .replace(/카키/g, "Khaki")
+    .replace(/코튼 브이넥 베스트/g, "Cotton V-neck Vest")
+    .replace(/릴렉스드 데일리 셔츠/g, "Relaxed Daily Dress Shirt")
+    .replace(/솔리드 바스크 셔츠/g, "Solid Basque Shirt")
+    .replace(/데일리 후디/g, "Daily Hoody")
+    .replace(/멜란지/g, "Melange")
+    .replace(/화이트/g, "White")
+    .replace(/라이트 그린/g, "Light Green")
+
+    .replace(/[가-힣]/g, "") //모든 한글 제거
+    
+    .toLowerCase() //모든 철자 소문자화 후
+    .replace(/\b\w/g, (match) => match.toUpperCase()); //각 단어의 첫 철자만 대문자화 
 
   const handleShowPaymentModal = () => setShowPaymentModal(true);
   const handleClosePaymentModal = () => setShowPaymentModal(false);
@@ -71,7 +103,7 @@ const ItemDetailPage = () => {
       dispatch({
         type: 'ADD_CART',
         payload: {
-          name: detailData?.title,
+          name: detailTitle,
           price: pageTotalPrice,
           img: detailData?.image,
           color: selectedColor,
@@ -150,7 +182,7 @@ const ItemDetailPage = () => {
             <span>{detailData?.category4}</span>
           </div>
           <hr />
-          <div className='text_title'>{detailData?.title?.replace(/<\/?b>/g, '').replace(/스테디에브리웨어/g, '').replace(/Steady Every Wear/g, '')}</div>
+          <div className='text_title'>{detailTitle}</div>
           <div className='text_price'>KRW {detailData?.lprice}</div>
           <hr />
           
@@ -206,25 +238,111 @@ const ItemDetailPage = () => {
           <div className="button-group">
             <button className="add-to-cart" onClick={handleAddToCart}>ADD TO CART</button>
             
-              <button className="buy-now">BUY NOW</button>
+              <button className="buy-now" onClick={handleShowPaymentModal}>BUY NOW</button>
             
             <button className="wish-list">❤️ WISH LIST</button>
           </div>
           
           <div>
-            <DropdownBox
-              title="제품 소재 정보"
-              content="여기에 제품 소재 정보를 입력하세요."
-            />
-            <DropdownBox
-              title="사이즈"
-              content="여기에 사이즈 정보를 입력하세요."
-            />
-            <DropdownBox
-              title="교환 및 반품"
-              content="여기에 교환 및 반품 정보를 입력하세요."
-            />
-          </div>
+  <DropdownBox
+    title="제품 소재 정보"
+    content={
+      <>
+        - 제품 소재 정보<br />
+        겉감 : Polyester 100% (From - JAPAN)<br /><br />
+        세탁방법<br />
+        제품 원형 보존을 위해 손세탁 혹은 드라이클리닝을 권장합니다.
+      </>
+    }
+  />
+  <DropdownBox
+  title="사이즈"
+  content={
+    <table style={{ borderCollapse: 'collapse', width: '100%' }}>
+      <thead>
+        <tr>
+          <th style={{ textAlign: 'left', paddingBottom: '8px' }}></th>
+          <th style={{ textAlign: 'center', paddingBottom: '8px' }}>S</th>
+          <th style={{ textAlign: 'center', paddingBottom: '8px' }}>M</th>
+          <th style={{ textAlign: 'center', paddingBottom: '8px' }}>L</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style={{ textAlign: 'right', padding: '4px 0' }}>총장</td>
+          <td style={{ textAlign: 'center', padding: '4px 0' }}>70</td>
+          <td style={{ textAlign: 'center', padding: '4px 0' }}>72</td>
+          <td style={{ textAlign: 'center', padding: '4px 0' }}>74</td>
+        </tr>
+        <tr>
+          <td style={{ textAlign: 'right', padding: '4px 0' }}>어깨단면</td>
+          <td style={{ textAlign: 'center', padding: '4px 0' }}>56</td>
+          <td style={{ textAlign: 'center', padding: '4px 0' }}>58</td>
+          <td style={{ textAlign: 'center', padding: '4px 0' }}>60</td>
+        </tr>
+        <tr>
+          <td style={{ textAlign: 'right', padding: '4px 0' }}>가슴단면</td>
+          <td style={{ textAlign: 'center', padding: '4px 0' }}>60</td>
+          <td style={{ textAlign: 'center', padding: '4px 0' }}>62</td>
+          <td style={{ textAlign: 'center', padding: '4px 0' }}>64</td>
+        </tr>
+        <tr>
+          <td style={{ textAlign: 'right', padding: '4px 0' }}>소매길이</td>
+          <td style={{ textAlign: 'center', padding: '4px 0' }}>22</td>
+          <td style={{ textAlign: 'center', padding: '4px 0' }}>24</td>
+          <td style={{ textAlign: 'center', padding: '4px 0' }}>26</td>
+        </tr>
+      </tbody>
+    </table>
+  }
+/>
+
+  <DropdownBox
+    title="교환 및 반품"
+    content={
+      <>
+        
+        CJ대한통운 택배를 이용하고 있으며 배송비는 무료입니다.<br /><br />
+        오후 2시 이전 주문 건에 한하여 당일 출고되며, 배송기간은 영업일 기준 1~3일 정도 소요됩니다. (단, 월요일이나 행사 기간 등 주문량이 많을 경우 배송이 지연될 수 있습니다.)<br /><br />
+        반품은 상품 수령일로부터 7일 이내에 가능합니다.<br /><br />
+        - 배송 정보 안내<br />
+        1) 매일 오후 2시 이전까지 결제(입금)가 완료된 주문에 한하여 당일 출고가 진행됩니다. (주말 제외)<br /><br />
+        2) 금요일 오후 2시 이후부터 다음 주 월요일 오후 2시까지의 결제가 완료된 주문은 월요일에 출고됩니다. (단, 월요일 출고량이 많을 경우 배송이 지연될 수 있습니다.)<br /><br />
+        3) 발송된 제품은 보통 배송 완료일(제품이 발송된 날)로부터 평균 2~3일 내에 고객님께 도착하며, 배송 시일은 운영진 쪽에서 조절할 수 없는 점 양해 부탁드립니다. (단, 제주도 및 도서지역은 추가 3일 이상 소요될 수 있습니다.)<br /><br />
+        오후 2시 이전 주문 → 당일 출고<br /><br />
+        오후 2시 이후 주문 → 익일 출고<br /><br />
+        ※ 간혹 회사 사정으로 인하여 부득이하게 발송 시점이 달라질 수 있으니 이 점 양해 부탁드립니다.<br /><br />
+        ※ 운송장 번호는 오후 5~6시경 일괄적으로 입력되고 있으나, 배송량에 따라 입력 시간은 다소 차이가 있을 수 있습니다.<br /><br />
+        - 교환 및 반품 정책<br />
+        Skrrr wear는 규정 내에서의 교환 및 환불에 대해 최대한 고객님의 입장에서 처리하기 위해 노력하고 있습니다.<br /><br />
+        하지만, 일부 재판매가 어려울 정도로 훼손된 제품의 교환이나 환불 요청이 있어 아래와 같이 교환/반품이 불가능한 경우를 공지합니다.<br /><br />
+        # 교환/반품 불가 사유<br /><br />
+        - 양말, 오염이 쉽게 발생하는 흰색 의류가 오염되었을 경우<br /><br />
+        - 시착으로 인한 신발의 바닥 오염, 주름이 발생한 경우<br /><br />
+        - 코트의 뒤트임과 주머니에 가봉 처리된 실을 제거하거나 팔 부분 주름이 발생한 경우<br /><br />
+        - 기타 재판매가 불가할 정도로 상품이 훼손된 경우 (늘어남, 오염, 가죽의 주름 등)<br /><br />
+        - 향수나 화장품, 땀, 담배 냄새가 배어있는 경우<br /><br />
+        - 세탁을 하거나 임의로 수선한 경우<br /><br />
+        - 하자 상품의 경우에도 교환/환불 불가<br /><br />
+        - 택을 분실하거나 제거한 경우<br /><br />
+        위 경우에 해당되는 상품을 임의로 발송 시 모든 배송비는 고객님 부담이며, 상품은 재발송 처리되오니 양해 부탁드립니다.<br /><br />
+        ■ 무료 반품 서비스<br /><br />
+        사이즈 선택이 어려우신가요?<br /><br />
+        고민 중인 두 사이즈를 구매하신 후 맞지 않는 사이즈는 반품하세요.<br /><br />
+        부분 반품 시 반품 배송비는 무료입니다.<br /><br />
+        해당 서비스는 공식 온라인 스토어 주문 건에 한합니다.<br /><br />
+        ※ 무료반품 서비스 예외 사항 (반품비 부과)<br /><br />
+        · 무신사 스토어 주문 건<br /><br />
+        · 두 사이즈 모두 반품할 경우<br /><br />
+        · 두 상품을 따로 받아보셨을 경우<br /><br />
+        · CJ대한통운을 이용하지 않은 경우 (ex. 편의점 택배 등)<br /><br />
+        · SALE 제품 등 따로 공지된 경우 (ex. SALE 카테고리 상품)
+      </>
+    }
+  />
+</div>
+
+
         </Col>
       </Row>
       
@@ -252,16 +370,65 @@ const ItemDetailPage = () => {
       </Row>
       
       <Row id="detail" className="section">
-        <hr/>
-        DETAIL
-        <img src={detailData?.image} alt="" style={{ width: '600px', height:`600px`, border: `1px solid #ddd` }} />
-        <img src={detailData?.image} alt="" style={{ width: '600px', height:`600px`, border: `1px solid #ddd` }} />
-        <img src={detailData?.image} alt="" style={{ width: '600px', height:`600px`, border: `1px solid #ddd` }} />
-        <img src={detailData?.image} alt="" style={{ width: '600px', height:`600px`, border: `1px solid #ddd` }} />
-        <img src={detailData?.image} alt="" style={{ width: '600px', height:`600px`, border: `1px solid #ddd` }} />
-        <img src={detailData?.image} alt="" style={{ width: '600px', height:`600px`, border: `1px solid #ddd` }} />
-        <hr/>
-      </Row>
+  <p style={{ fontWeight: 'bold' }}>
+    이 제품은 기본에 충실한 디자인과 품질을 자랑합니다. 깔끔한 라인과 세심한 마감 처리로 일상에서 편안하게 착용할 수 있으며, 
+    고급스러운 소재와 탄탄한 내구성으로 오랜 기간 사용할 수 있는 아이템입니다.
+  </p>
+  <img src={detailData?.image} alt="" style={{ width: '600px', height: '600px', border: '1px solid #ddd' }} />
+  <img src={detailData?.image} alt="" style={{ width: '600px', height: '600px', border: '1px solid #ddd' }} />
+  
+  <div style={{ textAlign: 'center' }}>
+  - 사이즈
+    <table style={{ borderCollapse: 'collapse', margin: '0 auto' , width: `500px`}}>
+      <thead>
+        <tr>
+          <th style={{ paddingBottom: '8px' }}></th>
+          <th style={{ textAlign: 'center', paddingBottom: '8px' }}>S</th>
+          <th style={{ textAlign: 'center', paddingBottom: '8px' }}>M</th>
+          <th style={{ textAlign: 'center', paddingBottom: '8px' }}>L</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style={{ textAlign: 'center', padding: '4px 0' }}>총장</td>
+          <td style={{ textAlign: 'center', padding: '4px 0' }}>70</td>
+          <td style={{ textAlign: 'center', padding: '4px 0' }}>72</td>
+          <td style={{ textAlign: 'center', padding: '4px 0' }}>74</td>
+        </tr>
+        <tr>
+          <td style={{ textAlign: 'center', padding: '4px 0' }}>어깨단면</td>
+          <td style={{ textAlign: 'center', padding: '4px 0' }}>56</td>
+          <td style={{ textAlign: 'center', padding: '4px 0' }}>58</td>
+          <td style={{ textAlign: 'center', padding: '4px 0' }}>60</td>
+        </tr>
+        <tr>
+          <td style={{ textAlign: 'center', padding: '4px 0' }}>가슴단면</td>
+          <td style={{ textAlign: 'center', padding: '4px 0' }}>60</td>
+          <td style={{ textAlign: 'center', padding: '4px 0' }}>62</td>
+          <td style={{ textAlign: 'center', padding: '4px 0' }}>64</td>
+        </tr>
+        <tr>
+          <td style={{ textAlign: 'center', padding: '4px 0' }}>소매길이</td>
+          <td style={{ textAlign: 'center', padding: '4px 0' }}>22</td>
+          <td style={{ textAlign: 'center', padding: '4px 0' }}>24</td>
+          <td style={{ textAlign: 'center', padding: '4px 0' }}>26</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <img src="https://m.wondandaejang.kr/web/product/extra/big/202307/3b707d258a6976a33a3b84403c8094ff.jpg" 
+      alt="product image" 
+      style={{ width: '100%', height: '600px', border: '1px solid #ddd' }} 
+  />
+  
+  <p>
+    - 제품 소재 정보<br />
+    겉감 : Polyester 100% (From - JAPAN)<br /><br />
+    세탁방법<br />
+    제품 원형 보존을 위해 손세탁 혹은 드라이클리닝을 권장합니다.
+  </p>
+</Row>
       
       <Row id="review" className="section">
         <hr/>
