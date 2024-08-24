@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useHomeData } from "../../hooks/useHomeData";
 import Banner from "./Banner/Banner";
 import ItemSection from "../../common/ItemSection/ItemSection"
 import "./Homepage.style.css";
+
 
 const Homepage = () => {
   const displayAmount = 12;
@@ -20,6 +21,17 @@ const Homepage = () => {
           </div>
         ))}
       </div> */}
+      {/* <Alert show={showFavoriteAlert} variant="secondary" className="favorite-alert">
+        <Alert.Heading>Favorite Item added!</Alert.Heading>
+        <hr />
+        <div className="d-flex justify-content-end">
+          <Button onClick={closeAlert} variant="outline-secondary">
+            Close
+          </Button>
+        </div>
+      </Alert> */}
+      
+      
       <Banner />
       <ItemSection data={data} />
     </div>

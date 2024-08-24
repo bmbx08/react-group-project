@@ -1,6 +1,7 @@
 let initialState = {
   category: "모두",
   keyword: "",
+  FavoritesList: [],
   productList: [],
   totalPrice: 0,
 };
@@ -16,6 +17,18 @@ function reducer(state = initialState, action) {
       return {...state, category: "모두"};
     case "RESET_KEYWORD":
       return {...state, keyword: ""};
+    case "STORE_FAVORITE":
+      // if(!state.FavoritesList.some((item)=> item.productId===payload.item.productId)) //store에 중복 즐겨찾기 상품이 없다면
+      return {...state, FavoritesList: [...state.FavoritesList, payload.item]}; //FavoritesList에 상품 추가
+    case "DELETE_FAVORITE":
+      // if(state.FavoritesList.some((item)=> item.productId===payload.item.productId)){ //store에 중복 즐겨찾기 상품이 있을 때
+      const newFavoritesList = state.FavoritesList.filter((item) => {
+        //삭제할 상품을 제외한 상품들을 new 배열에 담음
+        return !(item.productId === payload.item.productId);
+      });
+      return {...state, FavoritesList: newFavoritesList}; // new배열을 기존 배열과 교체
+    // }
+
     case "ADD_CART":
       const existingProduct = state.productList.find(
         (product) =>

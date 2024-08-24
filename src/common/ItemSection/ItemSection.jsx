@@ -3,7 +3,6 @@ import {Col, Row} from "react-bootstrap";
 import Sidebar from "./Sidebar/Sidebar";
 import ItemCard from "./ItemCard/ItemCard";
 import "./ItemSection.style.css";
-import { useSelector } from "react-redux";
 
 const ItemSection = ({data}) => {
   if (data) {
@@ -43,6 +42,9 @@ const ItemSection = ({data}) => {
         .replace(/\b\w/g, (match) => match.toUpperCase()); //각 단어의 첫 철자만 대문자화
 
       item.lprice = item?.lprice.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+      // item={...item, favorite:false};
+      // item.favorite=false; //직접 객체를 변형시킴, 리액트에서 오류 일어날 수 있음
     });
   }
 
@@ -55,7 +57,7 @@ const ItemSection = ({data}) => {
         <Row className="padding-right">
           {data?.items.map((item, index) => (
             <Col lg={3} sm={12}>
-              <ItemCard item={item} key={index} index={index} />
+              <ItemCard item={item} index={index} />
             </Col>
           ))}
         </Row>
