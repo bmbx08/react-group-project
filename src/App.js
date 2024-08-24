@@ -13,7 +13,6 @@ import MyCartPrivateRoute from "./pages/Login/MyCartPrivateRoute";
 import MyFavoritesPrivateRoute from "./pages/Login/MyFavoritesPrivateRoute";
 import Footer from "./layout/Footer";
 import MyInfoPage from "./pages/Userpage/MyInfoPage";
-import MyFavoritesPage from "./pages/Userpage/MyFavorites/MyFavoritesPage";
 
 function App() {
   let [authenticate, setAuthenticate] = useState(false) // true면 로그인이 됨 false면 로그인이 안됨
@@ -36,7 +35,7 @@ function App() {
           <Route path="userpage">
             <Route index element={<MyInfoPage/>}/>
             <Route path="myCart" element={<MyCartPrivateRoute authenticate={authenticate} />} />
-            <Route path="favorite" element={<MyFavoritesPage/>} />
+            <Route path="favorite" element={<MyFavoritesPrivateRoute authenticate={authenticate}/>} />
           </Route>
         </Route>
 
