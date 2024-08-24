@@ -37,7 +37,7 @@ const AppLayout = () => {
   }
 
   const goToShoppingCart = () => {
-    navigate('/cart')
+    navigate('/userpage/myCart')
   }
 
   const goToCreateAccount = () => {
@@ -50,21 +50,21 @@ const AppLayout = () => {
     }
   };
 
-  //Footer functions
-  // const url = "https://github.com/bmbx08/react-group-project"
-  //   const goToGit = () => {
-  //       window.open(url)
-  //   }
+  // Footer functions
+  const url = "https://github.com/bmbx08/react-group-project"
+    const goToGit = () => {
+        window.open(url)
+    }
 
-  //   const goToTc = () => {
-  //       navigate('/terms&conditions')
-  //   }
-  //   const goToG = () => {
-  //       navigate('/guide')
-  //   }
-  //   const goToPp = () => {
-  //       navigate('/policyprivacy')
-  //   }
+    const goToTc = () => {
+        navigate('/terms&conditions')
+    }
+    const goToG = () => {
+        navigate('/guide')
+    }
+    const goToPp = () => {
+        navigate('/policyprivacy')
+    }
 
   return (
     <div>

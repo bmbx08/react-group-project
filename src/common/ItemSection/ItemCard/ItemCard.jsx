@@ -1,92 +1,120 @@
-import {React, useState} from "react";
+import {React, useState, useEffect} from "react";
 import emptyHeart from "../../images/item-card/emptyheart3.png";
+import fullHeart from "../../images/item-card/fullheart.png"
 import cart from "../../images/item-card/cart.png";
-import magnify from "../../images/item-card/magnify.png"
-import AddToCartModal from '../../../pages/component/Modal/AddToCartModal';
+import magnify from "../../images/item-card/magnify.png";
+import AddToCartModal from "../../../pages/component/Modal/AddToCartModal";
 import "./ItemCard.style.css";
+import {useNavigate} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
 
-const ItemCard = ({item,index,showProduct ,data}) => {
-  // console.log(index);
-  // console.log(data)
+//data 안에 각 item을 favorite==false인 상태로 store에 저장
+//Item section에서 store에서 data를 불러와 각 Item card마다 favorite(true/false) 값을 전달해줌
+//Item card에서 그 favorite 값에 따라 fullheart/ emptyheart 출력
+
+const ItemCard = ({item, index}) => {
   const [showModal, setShowModal] = useState(false);
   const [selectedItemIndex, setSelectedItemIndex] = useState(null);
-  item.title = item?.title //제목에서 문구 제거
-    .replace(/[\[\]']+/g, "")
-    .replace(/[()]/g, "")
-    .replace(/<b>/g, "")
-    .replace(/<\/b>/g, "")
-    .replace(/,/g, "")
-    .replace(/steadyeverywear/g, "")
-    .replace(/Steady Every Wear/g, "")
-    .replace(/STEADY EVERY WEAR/g, "")
-    .replace(/STEADYEVERYWEAR/g, "")
-    .replace(/Steady Every wear/g, "")
-    .replace(/Steady Everywear/g, "")
-    .replace(/재입고/g, "")
-    
-    .replace("A-2", "")
-    .replace(/맨투맨 2/g, "Daily Long-sleeved Sweatshirt")
-    .replace(/하프 슬리브드 바스크/g, "Half-Sleeved Basque")
-    .replace(/레귤러 스트레이트 데님 팬츠/g, "Regular Straight Denim Pants")
-    .replace(/블랙/g, "Black")
-    .replace(/크림/g, "Cream")
-    .replace(/카키/g, "Khaki")
-    .replace(/코튼 브이넥 베스트/g, "Cotton V-neck Vest")
-    .replace(/릴렉스드 데일리 셔츠/g, "Relaxed Daily Dress Shirt")
-    .replace(/솔리드 바스크 셔츠/g, "Solid Basque Shirt")
-    .replace(/데일리 후디/g, "Daily Hoody")
-    .replace(/멜란지/g, "Melange")
-    .replace(/화이트/g, "White")
-    .replace(/라이트 그린/g, "Light Green")
+  const [favorite, setFavorite] = useState(false);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const favoritesList = useSelector((state) => state.FavoritesList);
 
-    .replace(/[가-힣]/g, "") //모든 한글 제거
-    
-    .toLowerCase() //모든 철자 소문자화 후
-    .replace(/\b\w/g, (match) => match.toUpperCase()); //각 단어의 첫 철자만 대문자화 
-    
-    item.lprice=item?.lprice.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  const goToDetailPage = () => {
+    navigate(`/items/${item.productId}`);
+  };
 
-    const handleAddToCartClick = (itemIndex) => {
-      setSelectedItemIndex(itemIndex); // 클릭한 아이템의 index를 상태로 저장
-      setShowModal(true);
-    };
-  
-    const handleCloseModal = () => {
-      setShowModal(false);
-      setSelectedItemIndex(null); // 모달을 닫으면 index 상태 초기화
-    };
-  
-    return (
-      <div className="item-card" onClick={() => showProduct(index)}>
-        <div className="img-container">
-          <img
-            src={`${item?.image}`}
-            width="200"
-            height="200"
-            className="item-img"
-            alt=''
-          />
-        </div>
-        <div>
-          <img src={emptyHeart} width="15" height="15" className="item-icon" alt=''/>
-          <img src={cart} width="18" height="16" className="item-icon" onClick={(e) => {
-            e.stopPropagation(); // 부모 요소의 클릭 이벤트 방지
-            handleAddToCartClick(index);
-          }} alt=''/>
-          <img src={magnify} width="15" height="15" className="item-icon" alt=''/>
-        </div>
-        <div>{item?.title}</div>
-        <div className="item-price">{item?.lprice}</div>
-  
-        {/* 모달 창 */}
-        <AddToCartModal 
-          show={showModal} 
-          handleClose={handleCloseModal} 
-          item={item} 
-          index={selectedItemIndex} 
+  const storeFavorite = (event) => {
+    event.stopPropagation(); //stops parent click event being recalled first
+    console.log(item);
+    dispatch({type: "STORE_FAVORITE", payload: {item}});
+    setFavorite(true);
+  };
+
+  const deleteFavorite = (event) => {
+    event.stopPropagation();
+    console.log(item);
+    dispatch({type: "DELETE_FAVORITE", payload: {item}});
+    setFavorite(false);
+  };
+
+  useEffect(() => {
+    if (
+      favoritesList.some((favoriteItem) => {
+        return favoriteItem === item;
+      })
+    ) {
+      console.log("favorite complete");
+      setFavorite(true);
+    }
+  }, [favoritesList]);
+
+  const handleAddToCartClick = (itemIndex) => {
+    setSelectedItemIndex(itemIndex); // 클릭한 아이템의 index를 상태로 저장
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+    setSelectedItemIndex(null); // 모달을 닫으면 index 상태 초기화
+  };
+
+  return (
+    <div
+      className="item-card"
+      onClick={goToDetailPage}
+    >
+      <div className="img-container">
+        <img
+          src={`${item?.image}`}
+          width="200"
+          height="200"
+          className="item-img"
         />
       </div>
-    );
+      <div>
+        {favorite == false ? (
+          <img
+            src={emptyHeart}
+            width="15"
+            height="15"
+            className="item-icon"
+            onClick={storeFavorite}
+          />
+        ) : (
+          <img
+            src={fullHeart}
+            width="15"
+            height="15"
+            className="item-icon"
+            onClick={deleteFavorite}
+          />
+        )}
+
+        <img
+          src={cart}
+          width="18"
+          height="16"
+          className="item-icon"
+          onClick={(e) => {
+            e.stopPropagation(); // 부모 요소의 클릭 이벤트 방지
+            handleAddToCartClick(index);
+          }}
+        />
+        <img src={magnify} width="15" height="15" className="item-icon" />
+      </div>
+
+      <div>{item?.title}</div>
+      <div className="item-price">{item?.lprice}</div>
+
+      <AddToCartModal
+        show={showModal}
+        handleClose={handleCloseModal}
+        item={item}
+        index={selectedItemIndex}
+      />
+    </div>
+  );
 };
 
 export default ItemCard;

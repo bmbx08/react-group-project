@@ -116,7 +116,7 @@
 
 .footer-2 {
     text-align: center;
-    padding: 2em;
+    /* padding: 2em; */
 }
 
 .footer-4 {
@@ -136,6 +136,7 @@
 
 .main-footer {
     font-family: 'main-font';
+    border-top: 1px solid lightgray;
 }
 
 .footer-logo {
