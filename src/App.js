@@ -5,6 +5,7 @@ import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 import Homepage from "./pages/Homepage/Homepage";
 import ItemsPage from "./pages/Items/ItemsPage";
 import ItemDetailPage from "./pages/ItemDetail/ItemDetailPage";
+import MyInfoPage from "./pages/Userpage/MyInfoPage"
 import LoginPage from "./pages/Login/LoginPage";
 import SignupPage from "./pages/Login/SignupPage";
 import MyCartPage from "./pages/Userpage/MyCartPage"
@@ -34,9 +35,11 @@ function App() {
             <Route path="signup" element={<SignupPage />} />
           </Route>
           <Route path="userpage">
+            <Route index element={<MyInfoPage />} /> {/* Closing tag properly */}
             <Route path="myCart" element={<MyCartPrivateRoute authenticate={authenticate} />} />
-            <Route path="favorite" element={<MyFavoritesPrivateRoute authenticate={authenticate}/>} />
+            <Route path="favorite" element={<MyFavoritesPrivateRoute authenticate={authenticate} />} />
           </Route>
+
         </Route>
 
         <Route path="*" element={<NotFoundPage />} />
