@@ -89,7 +89,6 @@ const AppLayout = () => {
           </div>
           <a className='logo-area' onClick={goToHome}>Skrrrr Wear</a>
           <div className='nav-right'>
-            <div onClick={()=>navigate(`/userpage/favorite`)}>좋아요 상품들</div>
             <div className='login-button' onClick={goToLogin}>
               <SlUser className="user-icon" />
               <div className='login-text'>로그인</div>
