@@ -8,7 +8,7 @@ const Banner = () => {
     const [currentSlide, setCurrentSlide] = useState(0);
     const slides = [
         banner1,banner2,banner3,
-        'https://ih1.redbubble.net/image.1108696597.9907/flat,750x,075,f-pad,750x1000,f8f8f8.u1.jpg',
+        // 'https://ih1.redbubble.net/image.1108696597.9907/flat,750x,075,f-pad,750x1000,f8f8f8.u1.jpg',
         // 'https://s14354.pcdn.co/wp-content/uploads/2019/02/clark-street-mercantile-33919-unsplash-768x549.jpg',
     ]
 
