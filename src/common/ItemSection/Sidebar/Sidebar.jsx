@@ -34,7 +34,7 @@ const Sidebar = () => {
           if (categ === "상의") {
             return (
               <>
-                <li key={index} className="no-dot sidebar-item" onClick={()=>toggleTopDisplay(!topDisplay)}>{categ}˅</li>
+                <li key={index} className="no-dot sidebar-item" onClick={()=>toggleTopDisplay(!topDisplay)}>{categ}▼</li>
                 <ul className={`list-padding toggle-section ${topDisplay}`}>
                   {topCategoryList.map((topCateg,index) => (
                     <li className="no-dot sidebar-subitem category-click" key={index} onClick={(event)=>getCategoryItems(event)}>{topCateg}</li>
@@ -46,7 +46,7 @@ const Sidebar = () => {
           if (categ === "아우터") {
             return (
               <>
-                <li key={index} className="no-dot sidebar-item" onClick={()=>toggleOuterDisplay(!outerDisplay)}>{categ}˅</li>
+                <li key={index} className="no-dot sidebar-item" onClick={()=>toggleOuterDisplay(!outerDisplay)}>{categ}▼</li>
                 <ul className={`list-padding toggle-section ${outerDisplay}`}>
                   {outerwearCategoryList.map((outerCateg,index) => (
                     <li className="no-dot sidebar-subitem category-click" key={index} onClick={(event)=>getCategoryItems(event)}>{outerCateg}</li>
