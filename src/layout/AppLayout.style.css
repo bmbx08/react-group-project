@@ -35,6 +35,8 @@
 }
 
 .login-button,
+.logout-button,
+.mypage-button,
 .shoppingCart-button,
 .create-button,
 .search-button {
@@ -56,6 +58,8 @@
 }
 
 .login-text,
+.logout-text,
+.mypage-text,
 .shoppingCart-text,
 .create-text,
 .item-text,
@@ -92,6 +96,8 @@
 
 
 .login-text:hover,
+.logout-text:hover,
+.mypage-text:hover,
 .shoppingCart-text:hover,
 .create-text:hover,
 .item-text:hover,
