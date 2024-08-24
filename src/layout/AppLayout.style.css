@@ -171,3 +171,34 @@
     font-size: 1.2em;
     cursor: pointer;
 }
+
+.custom-dropdown{
+    text-decoration: none;
+    color:black;
+    font-size: 0.9em;
+    margin-right: 0.7em;
+}
+
+.custom-dropdown:hover{
+    color: gray;
+}
+
+.dropdown-icon{
+    position: relative;
+    bottom: 0.2em;
+    margin-right: 0.2em;
+}
+
+a.dropdown-item{
+    padding-top: 0.4em;
+    padding-bottom: 0.4em;
+}
+
+a.dropdown-item:active{
+    background-color: lightgray;
+}
+
+.list-unstyled{
+    font-size: 0.9em;
+    margin-bottom: 0.3em;
+}

@@ -1,13 +1,49 @@
-import React, { useState } from "react";
-import { SlUser, SlUserFollow, SlBasket, SlMagnifier } from "react-icons/sl";
-import { Outlet, useNavigate } from "react-router-dom";
+import React, {useState} from "react";
+import {SlUser, SlUserFollow, SlBasket, SlMagnifier} from "react-icons/sl";
+import {Outlet, useNavigate} from "react-router-dom";
+import {Dropdown, Form, Nav, Navbar, NavDropdown} from "react-bootstrap";
+import emptyHeart from "../common/images/item-card/emptyheart3.png"
 import "./AppLayout.style.css";
 
-const AppLayout = () => {
-  const navigate = useNavigate();
+const AppLayout = ({authenticate, setAuthenticate}) => {
+  const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
+    <a
+      href=""
+      ref={ref}
+      onClick={(e) => {
+        e.preventDefault();
+        onClick(e);
+      }}
+      className="custom-dropdown"
+    >
+      {children}
+      &#x25bc;
+    </a>
+  ));
 
-  // 로그인 상태 관리
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const CustomMenu = React.forwardRef(
+    ({ children, style, className, 'aria-labelledby': labeledBy }, ref) => {
+      const [value, setValue] = useState('');
+  
+      return (
+        <div
+          ref={ref}
+          style={style}
+          className={className}
+          aria-labelledby={labeledBy}
+        >
+          <ul className="list-unstyled">
+            {React.Children.toArray(children).filter(
+              (child) =>
+                !value || child.props.children.toLowerCase().startsWith(value),
+            )}
+          </ul>
+        </div>
+      );
+    },
+  );
+
+  const navigate = useNavigate();
 
   // Navbar 함수들
   const goToHome = () => {
@@ -15,20 +51,20 @@ const AppLayout = () => {
   };
 
   const goToItem = () => {
-    navigate("/item");
+    navigate("/items");
   };
 
-  const goToNotice = () => {
-    navigate("/notice");
-  };
+  // const goToNotice = () => {
+  //   navigate("/notice");
+  // };
 
-  const goToQna = () => {
-    navigate("/qna");
-  };
+  // const goToQna = () => {
+  //   navigate("/qna");
+  // };
 
-  const goToReview = () => {
-    navigate("/review");
-  };
+  // const goToReview = () => {
+  //   navigate("/review");
+  // };
 
   const goToShopInfo = () => {
     navigate("/shopinfo");
@@ -38,10 +74,6 @@ const AppLayout = () => {
     navigate("/login");
   };
 
-  const goToShoppingCart = () => {
-    navigate('/userpage/myCart')
-  }
-
   const goToSignUp = () => {
     navigate("/login/signup");
   };
@@ -50,9 +82,19 @@ const AppLayout = () => {
     navigate("/userpage");
   };
 
+  const goToShoppingCart = () => {
+    navigate("/userpage/myCart");
+  };
+
+  const goToFavorites=()=>{
+    navigate("/userpage/favorite")
+  }
+
+
   const handleLogout = () => {
-    setIsLoggedIn(false);
+    setAuthenticate(false);
     navigate("/");
+    alert('로그아웃되었습니다!');
   };
 
   const onCheckEnter = (event) => {
@@ -72,13 +114,13 @@ const AppLayout = () => {
             <div className="shopinfo-button" onClick={goToShopInfo}>
               <div className="shopinfo-text">소개</div>
             </div>
-            <div className="notice-button" onClick={goToNotice}>
+            <div className="notice-button">
               <div className="notice-text">공지</div>
             </div>
-            <div className="qna-button" onClick={goToQna}>
+            <div className="qna-button">
               <div className="qna-text">문의</div>
             </div>
-            <div className="review-button" onClick={goToReview}>
+            <div className="review-button">
               <div className="review-text">리뷰</div>
             </div>
           </div>
@@ -86,17 +128,25 @@ const AppLayout = () => {
             Skrrrr Wear
           </h1>
           <div className="nav-right">
-            {isLoggedIn ? (
+            {authenticate ? (
               <>
-                <div className="logout-button" onClick={handleLogout}>
-                  <SlUser className="user-icon" />
-                  <div className="logout-text">로그아웃</div>
-                </div>
-                <div className="mypage-button" onClick={goToMyPage}>
-                  <SlUserFollow className="mypage-icon" />
-                  <div className="mypage-text">마이페이지</div>
-                </div>
-              </>
+              <Dropdown>
+              <Dropdown.Toggle as={CustomToggle} id="dropdown-custom-components">
+                내 정보
+              </Dropdown.Toggle>
+          
+              <Dropdown.Menu as={CustomMenu}>
+                <Dropdown.Item  onClick={goToMyPage}>마이페이지</Dropdown.Item>
+                <Dropdown.Item onClick={goToShoppingCart}><SlBasket className="shoppingCart-icon dropdown-icon" />
+                장바구니</Dropdown.Item>
+                <Dropdown.Item onClick={goToFavorites}><img src={emptyHeart} width="15px" height="15px" className="dropdown-icon"/>관심목록</Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+            <div className="logout-button" onClick={handleLogout}>
+            <SlUser className="user-icon" />
+            <div className="logout-text">로그아웃</div>
+          </div>
+          </>
             ) : (
               <>
                 <div className="login-button" onClick={goToLogin}>
@@ -109,10 +159,6 @@ const AppLayout = () => {
                 </div>
               </>
             )}
-            <div className="shoppingCart-button" onClick={goToShoppingCart}>
-              <SlBasket className="shoppingCart-icon" />
-              <div className="shoppingCart-text">장바구니</div>
-            </div>
             <div className="search-button">
               <div className="search-icon">
                 <SlMagnifier />
@@ -128,7 +174,7 @@ const AppLayout = () => {
           </div>
         </div>
       </div>
-      <Outlet context={{ setIsLoggedIn }} />
+      <Outlet />
     </div>
   );
 };

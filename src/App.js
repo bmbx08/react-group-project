@@ -23,7 +23,7 @@ function App() {
   return (
     <div>
       <Routes>
-        <Route path="/" element={<AppLayout />}>
+        <Route path="/" element={<AppLayout authenticate={authenticate} setAuthenticate={setAuthenticate}/>}>
           <Route index element={<Homepage />} />
           <Route path="items">
             <Route index element={<ItemsPage />} />
