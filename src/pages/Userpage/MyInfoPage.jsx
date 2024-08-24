@@ -6,9 +6,7 @@ const MyInfoPage = () => {
   const [gender, setGender] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
-  const [birthYear, setBirthYear] = useState("");
-  const [birthMonth, setBirthMonth] = useState("");
-  const [birthDay, setBirthDay] = useState("");
+  const [birth, setBirth] = useState("");
   const [address, setAddress] = useState("");
 
   useEffect(() => {
@@ -21,9 +19,7 @@ const MyInfoPage = () => {
       setGender(storedUser.gender || "");
       setEmail(storedUser.email || "");
       setPhone(storedUser.phone || "");
-      setBirthYear(storedUser.birthYear || "");
-      setBirthMonth(storedUser.birthMonth || "");
-      setBirthDay(storedUser.birthDay || "");
+      setBirth(storedUser.birth || "");
       setAddress(storedUser.address || "");
     }
   }, []);
@@ -53,7 +49,7 @@ const MyInfoPage = () => {
             <strong>Contact:</strong> {phone}
           </div>
           <div>
-            <strong>Birth:</strong> {birthYear}년 {birthMonth}월 {birthDay}일
+            <strong>Birth:</strong> {birth}
           </div>
           <div>
             <strong>Address:</strong> {address}
