@@ -1,3 +1,10 @@
+@font-face{
+    font-family: '둥글';
+    font-style: 'normal';
+    font-weight: 400;
+    src: url('../../font/KCC-Ganpan.woff');
+}
+
 .sidebar{
     position:sticky;
     top:0;
@@ -6,6 +13,7 @@
     flex-direction: column;
     justify-content: center;
     padding-left: 5em;
+    font-family: '둥글';
 }
 
 .sidebar-title{

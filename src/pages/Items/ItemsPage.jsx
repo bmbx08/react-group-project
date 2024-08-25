@@ -3,6 +3,7 @@ import {useSearchParams} from "react-router-dom";
 import ItemSection from "../../common/ItemSection/ItemSection";
 import {useData} from "../../hooks/useData";
 import TopBar from "./TopBar/TopBar";
+import "./ItemsPage.style.css";
 
 //category=모두이면 다시 api call
 //남성/여성이면 category2 에서 남성의류/여성의류인 값들만 .map에 표시
@@ -41,7 +42,7 @@ const ItemsPage = () => {
   }
 
   return (
-    <div>
+    <div className="items-page">
       <TopBar data={data}/>
       <ItemSection data={data} />
     </div>

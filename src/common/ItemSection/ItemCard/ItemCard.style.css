@@ -1,3 +1,10 @@
+@font-face{
+    font-family: '둥글';
+    font-style: 'normal';
+    font-weight: 400;
+    src: url('../../font/KCC-Ganpan.woff');
+}
+
 .item-card{
     /* background-size: 200px 200px;
     background-repeat: no-repeat;
@@ -7,6 +14,7 @@
     align-items: center;
     width:200px;
     height: 320px;
+    font-family: '둥글';
 }
 
 .img-container{

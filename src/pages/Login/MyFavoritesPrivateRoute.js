@@ -4,7 +4,7 @@ import { Navigate } from 'react-router-dom'
 
 const MyFavoritesPrivateRoute = ({authenticate}) => {
     return (
-        authenticate == true ? <MyFavoritesPage /> : <Navigate to="/login" />
+        authenticate === true ? <MyFavoritesPage /> : <Navigate to="/login" />
     )
 }
 

@@ -83,7 +83,7 @@ const AppLayout = ({authenticate, setAuthenticate}) => {
   };
 
   const goToShoppingCart = () => {
-    navigate("/userpage/myCart");
+    navigate("/userpage/mycart");
   };
 
   const goToFavorites=()=>{

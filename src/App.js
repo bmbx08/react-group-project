@@ -14,6 +14,7 @@ import MyCartPrivateRoute from "./pages/Login/MyCartPrivateRoute";
 import MyFavoritesPrivateRoute from "./pages/Login/MyFavoritesPrivateRoute";
 import SiteIntroductionPage from './pages/SiteIntroductionPage/SiteIntroductionPage';
 import Footer from "./layout/Footer";
+import MyInfoPrivateRoute from "./pages/Login/MyInfoPrivateRoute";
 
 function App() {
   let [authenticate, setAuthenticate] = useState(false) // true면 로그인이 됨 false면 로그인이 안됨
@@ -34,8 +35,8 @@ function App() {
             <Route path="signup" element={<SignupPage />} />
           </Route>
           <Route path="userpage">
-            <Route index element={<MyInfoPage/>}/>
-            <Route path="myCart" element={<MyCartPrivateRoute authenticate={authenticate} />} />
+            <Route index element={<MyInfoPrivateRoute authenticate={authenticate}/>}/>
+            <Route path="mycart" element={<MyCartPrivateRoute authenticate={authenticate} />} />
             <Route path="favorite" element={<MyFavoritesPrivateRoute authenticate={authenticate} />} />
           </Route>
           <Route path="shopinfo" element={<SiteIntroductionPage/>}>

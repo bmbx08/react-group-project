@@ -276,7 +276,7 @@ const detailData = data?.items.find((item) => {
   };
 
   return (
-    <Container>
+    <Container className="detail-page">
       <Row>
         <Col xs={12} md={6} className="Scanner" id="top">
           <div
@@ -780,7 +780,7 @@ const detailData = data?.items.find((item) => {
         <Modal.Footer>
           <Button variant="primary">
             <Link
-              to={"/userpage/MyCart"}
+              to={"/userpage/Mycart"}
               style={{color: "white", textDecoration: "none"}}
             >
               장바구니로 이동

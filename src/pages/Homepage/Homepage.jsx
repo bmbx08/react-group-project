@@ -12,7 +12,7 @@ const Homepage = () => {
   console.log("error", isError, error);
 
   return (
-    <div>
+    <div className="homepage">
       {/* <div className="d-flex">
         {data?.items?.map((item,index) => (
           <div className="item-card" key={index} onClick={()=>showProduct(index)} >

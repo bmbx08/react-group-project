@@ -4,7 +4,7 @@ import { Navigate } from 'react-router-dom'
 
 const MyCartPrivateRoute = ({ authenticate }) => {
     return (
-        authenticate == true ? <MyCartPage /> : <Navigate to="/login" />
+        authenticate === true ? <MyCartPage /> : <Navigate to="/login" />
     )
 }
 

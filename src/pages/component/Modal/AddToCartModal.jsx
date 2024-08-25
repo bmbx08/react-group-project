@@ -38,7 +38,7 @@ const AddToCartModal = ({ show, handleClose, item }) => {
         quantity: quantity,
       },
     });
-    navigate('/userpage/MyCart');
+    navigate('/userpage/Mycart');
     handleClose();
   };
 
