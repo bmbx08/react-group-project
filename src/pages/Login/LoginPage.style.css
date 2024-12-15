@@ -1,3 +1,16 @@
+.login-container{
+    height: 60vh;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-title{
+    font-size: 2em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
 .loginsignup {
     display: flex;
 }

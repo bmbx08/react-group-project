@@ -1,0 +1,36 @@
+.favorite-image{
+    height:60px;
+}
+
+.item-row{
+    border-bottom: 1px solid lightgray;
+    padding: 0.5em 0; 
+}
+
+.item-column{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.item-title{
+    justify-content: flex-start;
+}
+
+.favorite-item-price{
+    font-size: 0.9em;
+}
+
+.favorite-item-price::after{
+    content:"원"
+}
+
+.favorite-order-section{
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.favorite-order-button{
+    font-size: 0.8em;
+    padding:0.2em 0.5em;
+}

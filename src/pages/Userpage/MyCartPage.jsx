@@ -263,10 +263,10 @@ const MyCartPage = () => {
               value={selectedSize}
               onChange={(e) => setSelectedSize(e.target.value)}
             >
-              <option value="S">Small</option>
-              <option value="M">Medium</option>
-              <option value="L">Large</option>
-              <option value="XL">Extra Large</option>
+              <option value="S">S</option>
+              <option value="M">M</option>
+              <option value="L">L</option>
+              
             </Form.Control>
           </Form.Group>
           <hr />

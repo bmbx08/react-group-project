@@ -3,8 +3,11 @@ import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 
 const ModalPayment = ({ show, handleClose, totalPrice}) => {
+  const handleModalClick = (event) => {
+    event.stopPropagation();
+  };
   return (
-    <Modal show={show} onHide={handleClose} size="lg">
+    <Modal show={show} onHide={handleClose} size="lg" onClick={handleModalClick}>
       <Modal.Header closeButton>
         <Modal.Title>결제 페이지</Modal.Title>
       </Modal.Header>

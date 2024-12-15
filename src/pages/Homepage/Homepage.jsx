@@ -1,21 +1,18 @@
-import React from "react";
-import {useData} from "../../hooks/useData";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useHomeData } from "../../hooks/useHomeData";
 import Banner from "./Banner/Banner";
 import ItemSection from "../../common/ItemSection/ItemSection"
 import "./Homepage.style.css";
 
+
 const Homepage = () => {
-  const {data, isLoading, isError, error} = useData();
-  const navigate = useNavigate();
+  const displayAmount = 12;
+  const {data, isLoading, isError, error} = useHomeData(displayAmount);
   console.log("data", data, isLoading);
   console.log("error", isError, error);
 
-  const showProduct = (index) => {
-    navigate(`/items/${index}`)
-  }
   return (
-    <div>
+    <div className="homepage">
       {/* <div className="d-flex">
         {data?.items?.map((item,index) => (
           <div className="item-card" key={index} onClick={()=>showProduct(index)} >
@@ -24,8 +21,19 @@ const Homepage = () => {
           </div>
         ))}
       </div> */}
+      {/* <Alert show={showFavoriteAlert} variant="secondary" className="favorite-alert">
+        <Alert.Heading>Favorite Item added!</Alert.Heading>
+        <hr />
+        <div className="d-flex justify-content-end">
+          <Button onClick={closeAlert} variant="outline-secondary">
+            Close
+          </Button>
+        </div>
+      </Alert> */}
+      
+      
       <Banner />
-      <ItemSection data={data} showProduct={showProduct}/>
+      <ItemSection data={data} />
     </div>
   );
 };

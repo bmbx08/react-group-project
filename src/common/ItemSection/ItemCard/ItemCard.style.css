@@ -1,3 +1,10 @@
+@font-face{
+    font-family: '둥글';
+    font-style: 'normal';
+    font-weight: 400;
+    src: url('../../font/KCC-Ganpan.woff');
+}
+
 .item-card{
     /* background-size: 200px 200px;
     background-repeat: no-repeat;
@@ -6,7 +13,8 @@
     flex-direction: column;
     align-items: center;
     width:200px;
-    height: 350px;
+    height: 320px;
+    font-family: '둥글';
 }
 
 .img-container{
@@ -26,6 +34,11 @@
 
 .item-card:hover .item-icon{
     opacity:1;
+    transition: ease-in-out 0.2s;
+}
+
+.item-icon:hover{
+    transform: scale(1.3);
     transition: ease-in-out 0.2s;
 }
 
